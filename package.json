@@ -7,7 +7,7 @@
   "author": "EDC <info@equibitgroup.com>",
   "license": "MIT",
   "dependencies": {
-    "tx-decoder": "https://github.com/ilyavf/tx-decoder.git"
+    "tx-decoder": "tx-decoder"
   },
   "devDependencies": {
     "assert": "^1.4.1",
