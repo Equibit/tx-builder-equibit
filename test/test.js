@@ -20,10 +20,10 @@ describe('Decode hex', function () {
     it('should read index', function () {
       assert.equal(input.index, fixture.decoded.vin[0].vout)
     })
-    // TODO: add decodeScript to tx-decoder and enable the test.
-    // it('should read script', function () {
-    //   assert.equal(input.script.toString('hex'), fixture.decoded.vin[0].scriptPubKey)
-    // })
+    // TODO: add decodeScript to tx-decoder.
+    it('should read script', function () {
+      assert.equal(input.script.toString('hex'), fixture.decoded.vin[0].scriptSig.hex)
+    })
     it('should read sequence', function () {
       assert.equal(input.sequence, fixture.decoded.vin[0].sequence)
     })
@@ -44,7 +44,7 @@ describe('Decode hex', function () {
 			assert.equal(output.value, fixture.decoded.vout[0].value)
 		})
 		it('should read script', function () {
-			assert.equal(output.script.toString('hex'), fixture.decoded.vout[0].script)
+			assert.equal(output.script.toString('hex'), fixture.decoded.vout[0].scriptPubKey.hex)
 		})
 		it('should leave some buffer', function () {
 			assert.ok(bufferLeft2)
@@ -64,9 +64,25 @@ describe('Decode hex', function () {
 		it('should read the value of the 2nd output', function () {
 			assert.equal(res[1].value, fixture.decoded.vout[1].value)
 		})
-    it('should leave the buffer with the locktime (4 bytes)', function () {
-      assert.ok(bufferLeft)
-      assert.equal(bufferLeft.length - buffer.length, 4)
+    describe('equibit data', function () {
+      it('should read payment_currency', function () {
+        assert.equal(res[0].equibit.payment_currency, fixture.decoded.vout[0].equibit.payment_currency)
+      })
+      it('should read payment_tx_id', function () {
+        assert.equal(res[0].equibit.payment_tx_id, fixture.decoded.vout[0].equibit.payment_tx_id)
+      })
+      it('should read payload (empty string)', function () {
+        assert.equal(res[0].equibit.payload.toString('hex'), fixture.decoded.vout[0].equibit.payload)
+      })
+      it('should read payment_currency', function () {
+        assert.equal(res[1].equibit.payment_currency, fixture.decoded.vout[1].equibit.payment_currency)
+      })
+      it('should read payment_tx_id', function () {
+        assert.equal(res[1].equibit.payment_tx_id, fixture.decoded.vout[1].equibit.payment_tx_id)
+      })
+      it('should read payload (JSON string)', function () {
+        assert.equal(res[1].equibit.payload.toString(), fixture.decoded.vout[1].equibit.payload)
+      })
     })
 	})
 
@@ -78,10 +94,7 @@ describe('Decode hex', function () {
       } catch (e) {
         console.log(e)
       }
-      console.log(decoded[0])
-      console.log(`decoded hex = ${decoded[1].toString('hex')}, offset = ${buffer.length - decoded[1].length}`)
-      // console.log(decoded[0].vin)
-      assert.ok(decoded)
+      assert.equal(decoded[0].locktime, fixture.decoded.locktime)
     })
   })
 })
