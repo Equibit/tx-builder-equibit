@@ -7,10 +7,11 @@
   "author": "EDC <info@equibitgroup.com>",
   "license": "MIT",
   "dependencies": {
-    "tx-decoder": "tx-decoder"
+    "tx-builder": "^0.4.0"
   },
   "devDependencies": {
     "assert": "^1.4.1",
+    "bitcoinjs-lib": "^3.1.1",
     "mocha": "^3.4.2",
     "nyc": "^11.0.3",
     "safe-buffer": "^5.1.1",

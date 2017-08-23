@@ -48,7 +48,7 @@ offset = readVin(buffer, offset)
 
 // VOUT
 const voutLen = varuint.decode(buffer, offset)
-console.log(`* voutLen = ${vinLen}, offset=${offset}, length=${varuint.decode.bytes}`)
+console.log(`* voutLen = ${voutLen}, offset=${offset}, length=${varuint.decode.bytes}`)
 offset += varuint.decode.bytes
 
 // VOUT item:

@@ -1,6 +1,6 @@
 const varuint = require('varuint-bitcoin')
-const { compose, addProp } = require('tx-decoder/src/compose')
-const { readInputs, readInput, readHash } = require('tx-decoder/src/tx-decoder')
+const { compose, addProp } = require('tx-builder/src/compose-read')
+const { readInputs, readInput, readHash } = require('tx-builder/src/tx-decoder')
 const {
   readSlice,
   readUInt32,
@@ -8,7 +8,7 @@ const {
   readUInt64,
   readVarInt,
   readVarSlice
-} = require('tx-decoder/src/buffer-utils')
+} = require('tx-builder/src/buffer-read')
 
 // decodeTx :: buffer -> [vin, buffer]
 const decodeTx = buffer =>
