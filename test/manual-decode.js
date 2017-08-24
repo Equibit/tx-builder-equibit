@@ -1,6 +1,6 @@
 const varuint = require('varuint-bitcoin')
 const Buffer = require('safe-buffer').Buffer
-const fixtures = require('./fixtures')
+const fixtures = require('./fixtures/tx-hex')
 
 const txHex = fixtures[0].hex
 const buffer = Buffer.from(txHex, 'hex')

@@ -5,8 +5,7 @@ const bscript = require('bitcoinjs-lib').script
 const { readVarInt } = require('tx-builder/src/buffer-read')
 const { readInput, readInputs } = require('tx-builder/src/tx-decoder')
 const { decodeTx, readOutput } = require('../src/tx-decoder-equibit')
-const fixtureNode = require('tx-builder/test/fixtures/hdnode')
-const fixtures = require('./fixtures')
+const fixtures = require('./fixtures/tx-hex')
 const fixture = fixtures[0]
 
 describe('Decode hex', function () {
