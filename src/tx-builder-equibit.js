@@ -93,13 +93,13 @@ const bufferOutput = vout =>
 )
 
 // buildEquibitData :: Object -> Buffer
-const buildEquibitData = buffer =>
+const buildEquibitData = equbitData =>
 (
   compose([
-    addProp('payment_currency', bufferUInt32),        // 0 - means no currency (for blank equibits) and 1 -- means BitCoin
-    addProp('payment_tx_id', bufferHash),             // 256 bit hash (8 bytes) - should this be 32 bytes?
-    addProp('payload', bufferVarSlice)                // JSON payload, var length slice
-  ])({}, buffer)
+    prop('payment_currency', bufferUInt32),        // 0 - means no currency (for blank equibits) and 1 -- means BitCoin
+    prop('payment_tx_id', bufferHash),             // 256 bit hash (8 bytes) - should this be 32 bytes?
+    prop('payload', bufferVarSlice('ascii'))       // JSON payload, var length slice
+  ])(equbitData, EMPTY_BUFFER)
 )
 
 module.exports = {

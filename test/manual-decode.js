@@ -100,3 +100,6 @@ console.log(`* locktime = ${locktime}, offset=${offset}, length=4`)
 offset += 4
 
 console.log(`BUFFER LEFT = ${buffer.slice(offset).toString('hex')}`)
+
+// For fixtures:
+console.log(`vout.1.equibit: ${buffer.slice(406, 1267).toString('hex')}`)
