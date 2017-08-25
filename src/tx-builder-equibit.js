@@ -82,12 +82,12 @@ const mapConcatBuffers = bufferFn => vins =>
 const bufferOutput = vout =>
 (
   compose([
-    prop('value', bufferUInt64),               // 8 bytes, Amount in satoshis
+    prop('value', bufferUInt64),                  // 8 bytes, Amount in satoshis
     addProp(
       'scriptPubKey',
       prop('address', voutScript)
     ),
-    prop('scriptPubKey', bufferVarSlice),      // 1-9 bytes (VarInt), Locking-Script Size; Variable, Locking-Script
+    prop('scriptPubKey', bufferVarSlice('hex')),  // 1-9 bytes (VarInt), Locking-Script Size; Variable, Locking-Script
     prop('equibit', buildEquibitData)
   ])(vout, EMPTY_BUFFER)
 )

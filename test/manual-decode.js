@@ -102,4 +102,7 @@ offset += 4
 console.log(`BUFFER LEFT = ${buffer.slice(offset).toString('hex')}`)
 
 // For fixtures:
+console.log(`vout.0.equibit: ${buffer.slice(335, 372).toString('hex')}`)
 console.log(`vout.1.equibit: ${buffer.slice(406, 1267).toString('hex')}`)
+console.log(`vout.0: ${buffer.slice(301, 372).toString('hex')}`)
+console.log(`vout.1: ${buffer.slice(372, 1267).toString('hex')}`)
