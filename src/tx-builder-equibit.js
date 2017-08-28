@@ -101,7 +101,7 @@ module.exports = {
   buildEquibitData,
   // txCopyForHash,
   // txCopySubscript,
-  bufferOutput,
+  bufferOutput
   // vinScript,
   // voutScript,
 }

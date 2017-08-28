@@ -6,6 +6,16 @@
   "repository": "https://github.com/Equibit/tx-decoder.git",
   "author": "EDC <info@equibitgroup.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "npm run lint && npm run mocha",
+    "lint": "standard --fix",
+    "mocha": "nyc mocha -u tdd --timeout 999999 --colors test/ --recursive"
+  },
+  "standard": {
+    "env": [
+      "mocha"
+    ]
+  },
   "dependencies": {
     "tx-builder": "0.4.2"
   },

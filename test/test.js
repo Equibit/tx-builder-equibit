@@ -14,7 +14,7 @@ describe('Decode hex', function () {
 
   describe('readInput', function () {
     const offset = 4 + 1
-    const [input, bufferLeft] = readInput(buffer.slice( offset ))
+    const [input, bufferLeft] = readInput(buffer.slice(offset))
     it('should read hash', function () {
       assert.equal(input.hash.toString('hex'), fixture.decoded.vin[0].txid)
     })
@@ -46,42 +46,42 @@ describe('Decode hex', function () {
     })
   })
 
-	describe('readOutput', function () {
-		const offsetVout = fixture.offsetVout
+  describe('readOutput', function () {
+    const offsetVout = fixture.offsetVout
 	  const [ howManyOutputs, bufferLeft ] = readVarInt(buffer.slice(offsetVout))
     it('should read the number of outputs', function () {
       assert.equal(howManyOutputs, fixture.decoded.vout.length)
     })
 
-		const [output, bufferLeft2] = readOutput(bufferLeft)
-		it('should read value', function () {
-			assert.equal(output.value, fixture.decoded.vout[0].value)
-		})
-		it('should read script', function () {
-			assert.equal(output.script.toString('hex'), fixture.decoded.vout[0].scriptPubKey.hex)
-		})
+    const [output, bufferLeft2] = readOutput(bufferLeft)
+    it('should read value', function () {
+      assert.equal(output.value, fixture.decoded.vout[0].value)
+    })
+    it('should read script', function () {
+      assert.equal(output.script.toString('hex'), fixture.decoded.vout[0].scriptPubKey.hex)
+    })
     it('should decode script', function () {
       const scriptAsm = bscript.toASM(output.script)
       assert.equal(scriptAsm, fixture.decoded.vout[0].scriptPubKey.asm)
     })
-		it('should leave some buffer', function () {
-			assert.ok(bufferLeft2)
-			assert.ok(bufferLeft2.length < buffer.length)
-		})
-	})
+    it('should leave some buffer', function () {
+      assert.ok(bufferLeft2)
+      assert.ok(bufferLeft2.length < buffer.length)
+    })
+  })
 
-	describe('readOutputs', function () {
-		const offsetVout = fixture.offsetVout
+  describe('readOutputs', function () {
+    const offsetVout = fixture.offsetVout
 	  const [ res, bufferLeft ] = readInputs(readOutput)(buffer.slice(offsetVout))
     it('should read the number of outputs', function () {
       assert.equal(res.length, fixture.decoded.vout.length)
     })
-		it('should read the value of the 1st output', function () {
-			assert.equal(res[0].value, fixture.decoded.vout[0].value)
-		})
-		it('should read the value of the 2nd output', function () {
-			assert.equal(res[1].value, fixture.decoded.vout[1].value)
-		})
+    it('should read the value of the 1st output', function () {
+      assert.equal(res[0].value, fixture.decoded.vout[0].value)
+    })
+    it('should read the value of the 2nd output', function () {
+      assert.equal(res[1].value, fixture.decoded.vout[1].value)
+    })
     it('should decode script of vout 1', function () {
       const scriptAsm = bscript.toASM(res[0].script)
       assert.equal(scriptAsm, fixture.decoded.vout[0].scriptPubKey.asm)
@@ -110,7 +110,7 @@ describe('Decode hex', function () {
         assert.equal(res[1].equibit.payload.toString(), fixture.decoded.vout[1].equibit.payload)
       })
     })
-	})
+  })
 
   describe('decodeTx', function () {
     it('should decode tx', function () {
