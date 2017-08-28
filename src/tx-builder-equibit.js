@@ -32,7 +32,8 @@ const {
   bufferUInt32,
   bufferUInt64,
   bufferVarInt,
-  bufferVarSlice
+  bufferVarSlice,
+  mapConcatBuffers
 } = require('tx-builder/src/buffer-build')
 const {
   compose,
@@ -43,8 +44,8 @@ const {
   buildTxCopy,
   txCopyForHash,
   txCopySubscript,
-  bufferInputs,
-  bufferInput,
+  // bufferInputs,
+  // bufferInput,
   // bufferOutput,
   bufferHash,
   vinScript,
@@ -68,14 +69,6 @@ const buildTx = tx =>
     prop('vout', mapConcatBuffers(bufferOutput)),   // 1-9 bytes (VarInt), Output counter; Variable, Outputs
     prop('locktime', bufferUInt32)                  // 4 bytes
   ])(tx, EMPTY_BUFFER)
-)
-
-// mapConcatBuffers :: Fn -> Array -> Buffer
-const mapConcatBuffers = bufferFn => vins =>
-(
-  Buffer.concat(
-    [bufferVarInt(vins.length)].concat(vins.map(bufferFn))
-  )
 )
 
 // bufferOutput :: Object -> Buffer

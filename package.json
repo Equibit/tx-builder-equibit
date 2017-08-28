@@ -7,7 +7,7 @@
   "author": "EDC <info@equibitgroup.com>",
   "license": "MIT",
   "dependencies": {
-    "tx-builder": "^0.4.0"
+    "tx-builder": "0.4.2"
   },
   "devDependencies": {
     "assert": "^1.4.1",
