@@ -69,13 +69,13 @@ const readVout = (buffer, offset) => {
   offset += lockingScriptLen
 
   // equibit data:
-  const payment_currency = buffer.readUInt32LE(offset)
-  console.log(`* equibit.payment_currency = ${payment_currency}, offset=${offset}, length=4`)
+  const paymentCurrency = buffer.readUInt32LE(offset)
+  console.log(`* equibit.payment_currency = ${paymentCurrency}, offset=${offset}, length=4`)
   offset += 4
 
   const hashReversed = buffer.slice(offset, offset + 32)
-  const payment_tx_id = Buffer.from(hashReversed, 'hex').reverse().toString('hex')
-  console.log(`* equibit.payment_tx_id = ${payment_tx_id.toString('hex')}, offset=${offset}, length=32`)
+  const paymentTxId = Buffer.from(hashReversed, 'hex').reverse().toString('hex')
+  console.log(`* equibit.payment_tx_id = ${paymentTxId.toString('hex')}, offset=${offset}, length=32`)
   offset += 32
 
   const payloadLength = varuint.decode(buffer, offset)
@@ -102,6 +102,7 @@ offset += 4
 console.log(`BUFFER LEFT = ${buffer.slice(offset).toString('hex')}`)
 
 // For fixtures:
+console.log(`vin.0: ${buffer.slice(5, 153).toString('hex')}`)
 console.log(`vout.0.equibit: ${buffer.slice(335, 372).toString('hex')}`)
 console.log(`vout.1.equibit: ${buffer.slice(406, 1267).toString('hex')}`)
 console.log(`vout.0: ${buffer.slice(301, 372).toString('hex')}`)

@@ -1,15 +1,22 @@
-const varuint = require('varuint-bitcoin')
+// const varuint = require('varuint-bitcoin')
 const assert = require('assert')
 const {
   // buildTx,
   buildEquibitData,
   bufferOutput
+  // bufferInput,
+  // buildTxCopy,
+  // vinScript
 } = require('../src/tx-builder-equibit')
 const fixtures = require('./fixtures/tx-hex')
 const fixture = fixtures[0]
-// const fixtureNode = require('./fixtures/hdnode')
+const fixtureNode = require('./fixtures/hdnode')
 
 describe('tx-build-equibit', function () {
+  const keyPair = fixtureNode.keyPair
+  fixture.tx.vin[0].keyPair = keyPair
+  fixture.tx.vin[1].keyPair = keyPair
+
   describe('buildEquibitData', function () {
     it('should create a buffer with empty equibit data', function () {
       const obj = fixture.tx.vout[0].equibit
@@ -32,4 +39,41 @@ describe('tx-build-equibit', function () {
       assert.equal(buffer.toString('hex'), fixture.hexItems.vout[1].hex)
     })
   })
+
+  // describe('vinScript', function () {
+  //   const keyPair = fixtureNode.keyPair
+  //   it('should create vin script', function () {
+  //     const script = vinScript(buildTxCopy)(fixture.tx)(keyPair)
+  //     assert.equal(script.toString('hex'), fixture.decoded.vin[0].scriptSig.hex)
+  //   })
+  // })
+
+  // describe('bufferInput', function () {
+  //   const keyPair = fixtureNode.keyPair
+  //   it('should build vin', function () {
+  //     const txVin = Object.assign({}, fixture.tx.vin[0], {
+  //       keyPair
+  //     })
+  //     const buffer = bufferInput(fixture.tx)(txVin)
+  //     assert.equal(buffer.toString('hex'), fixture.hexItems.vin[0].hex)
+  //   })
+  // })
+
+  // describe('bufferInputs', function () {
+  //   it('should process vins', function () {
+  //     const keyPair = fixtureNode.keyPair
+  //     const tx = Object.assign({}, fixture.tx)
+  //     tx.vin[0].keyPair = keyPair
+  //     tx.vin[1].keyPair = keyPair
+  //     const buffer = bufferInputs('vin')(tx)
+  //     assert.equal(buffer.toString('hex'), '02' + fixture.hexItems.vin[0].hex + fixture.hexItems.vin[1].hex)
+  //   })
+  // })
+
+  // describe('buildTx', function () {
+  //   it('should build vout-0 buffer', function () {
+  //     const buffer = buildTx(fixture.tx)
+  //     assert.equal(buffer.toString('hex'), fixture.hex)
+  //   })
+  // })
 })

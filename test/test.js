@@ -44,11 +44,14 @@ describe('Decode hex', function () {
       const scriptAsm = bscript.toASM(input.scriptSig)
       assert.equal(scriptAsm.replace('01 ', '[ALL] '), fixture.decoded.vin[1].scriptSig.asm)
     })
+    it('should leave some buffer', function () {
+      assert.ok(bufferLeft)
+    })
   })
 
   describe('readOutput', function () {
     const offsetVout = fixture.offsetVout
-	  const [ howManyOutputs, bufferLeft ] = readVarInt(buffer.slice(offsetVout))
+    const [ howManyOutputs, bufferLeft ] = readVarInt(buffer.slice(offsetVout))
     it('should read the number of outputs', function () {
       assert.equal(howManyOutputs, fixture.decoded.vout.length)
     })
@@ -72,7 +75,7 @@ describe('Decode hex', function () {
 
   describe('readOutputs', function () {
     const offsetVout = fixture.offsetVout
-	  const [ res, bufferLeft ] = readInputs(readOutput)(buffer.slice(offsetVout))
+    const [ res, bufferLeft ] = readInputs(readOutput)(buffer.slice(offsetVout))
     it('should read the number of outputs', function () {
       assert.equal(res.length, fixture.decoded.vout.length)
     })
@@ -89,6 +92,9 @@ describe('Decode hex', function () {
     it('should decode script of vout 2', function () {
       const scriptAsm = bscript.toASM(res[1].script)
       assert.equal(scriptAsm, fixture.decoded.vout[1].scriptPubKey.asm)
+    })
+    it('should leave some buffer', function () {
+      assert.ok(bufferLeft.length)
     })
     describe('equibit data', function () {
       it('should read payment_currency', function () {

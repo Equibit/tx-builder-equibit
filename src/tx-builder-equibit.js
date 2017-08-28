@@ -15,23 +15,14 @@
  *    - payload, string
  */
 
-const { clone } = require('ramda')
 const Buffer = require('safe-buffer').Buffer
-const bitcoin = require('bitcoinjs-lib')
-const bcrypto = bitcoin.crypto
-const bscript = bitcoin.script
-const baddress = bitcoin.address
-
-const HASHTYPE = {
-  SIGHASH_ALL: 0x01
-}
 
 const {
-  bufferUInt8,
+  // bufferUInt8,
   bufferInt32,
   bufferUInt32,
   bufferUInt64,
-  bufferVarInt,
+  // bufferVarInt,
   bufferVarSlice,
   mapConcatBuffers
 } = require('tx-builder/src/buffer-build')
@@ -41,16 +32,12 @@ const {
   addProp
 } = require('tx-builder/src/compose-build')
 const {
-  buildTxCopy,
-  txCopyForHash,
-  txCopySubscript,
-  // bufferInputs,
-  // bufferInput,
-  // bufferOutput,
+  bufferInputs,
+  makeBufferInput,
+  makeBuildTxCopy,
   bufferHash,
   vinScript,
-  voutScript,
-  bufferInputEmptyScript
+  voutScript
 } = require('tx-builder/src/tx-builder')
 
 const EMPTY_BUFFER = Buffer.allocUnsafe(0)
@@ -65,12 +52,16 @@ const buildTx = tx =>
 (
   compose([
     prop('version', bufferInt32),                   // 4 bytes
-    bufferInputs('vin'),                            // 1-9 bytes (VarInt), Input counter; Variable, Inputs
+    bufferInputs('vin', bufferInput),               // 1-9 bytes (VarInt), Input counter; Variable, Inputs
     prop('vout', mapConcatBuffers(bufferOutput)),   // 1-9 bytes (VarInt), Output counter; Variable, Outputs
     prop('locktime', bufferUInt32)                  // 4 bytes
   ])(tx, EMPTY_BUFFER)
 )
 
+/**
+ * Function bufferOutput is the main that implements equibit transaction structure difference.
+ * @param vout
+ */
 // bufferOutput :: Object -> Buffer
 const bufferOutput = vout =>
 (
@@ -95,13 +86,16 @@ const buildEquibitData = equbitData =>
   ])(equbitData, EMPTY_BUFFER)
 )
 
+// Prepare reusable functions:
+const buildTxCopy = makeBuildTxCopy(bufferOutput)
+const bufferInput = makeBufferInput(buildTxCopy)
+
 module.exports = {
   buildTx,
   buildTxCopy,
   buildEquibitData,
-  // txCopyForHash,
-  // txCopySubscript,
-  bufferOutput
-  // vinScript,
-  // voutScript,
+  bufferInputs,
+  bufferInput,
+  bufferOutput,
+  vinScript
 }

@@ -1,12 +1,12 @@
-const varuint = require('varuint-bitcoin')
+// const varuint = require('varuint-bitcoin')
 const { compose, addProp } = require('tx-builder/src/compose-read')
 const { readInputs, readInput, readHash } = require('tx-builder/src/tx-decoder')
 const {
-  readSlice,
+  // readSlice,
   readUInt32,
   readInt32,
   readUInt64,
-  readVarInt,
+  // readVarInt,
   readVarSlice
 } = require('tx-builder/src/buffer-read')
 
