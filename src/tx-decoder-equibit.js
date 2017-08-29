@@ -21,22 +21,6 @@ const decodeTx = buffer =>
   ])({}, buffer)
 )
 
-// VOUT.equibit:
-// payment_currency: a 32bit unsigned integer
-// payment_tx_id: 256bit hash (8 bytes)
-// payload: a string, its length is serialized first, and then its content
-
-// readOutput :: Buffer -> [Res, Buffer]
-const readEquibitData = buffer =>
-  (
-    compose([
-      addProp('payment_currency', readUInt32),        // 0 - means no currency (for blank equibits) and 1 -- means BitCoin
-      addProp('payment_tx_id', readHash),             // tx hash
-      addProp('issuance_tx_id', readHash),            // tx hash
-      addProp('payload', readVarSlice)                //
-    ])({}, buffer)
-  )
-
 // readOutput :: Buffer -> [Res, Buffer]
 const readOutput = buffer =>
 (
@@ -44,6 +28,22 @@ const readOutput = buffer =>
     addProp('value', readUInt64),             // 8 bytes, Amount in satoshis
     addProp('script', readVarSlice),          // 1-9 bytes (VarInt), Locking-Script Size; Variable, Locking-Script
     addProp('equibit', readEquibitData)       //
+  ])({}, buffer)
+)
+
+// VOUT.equibit:
+// payment_currency: a 32bit unsigned integer
+// payment_tx_id: 256bit hash (8 bytes)
+// payload: a string, its length is serialized first, and then its content
+
+// readOutput :: Buffer -> [Res, Buffer]
+const readEquibitData = buffer =>
+(
+  compose([
+    addProp('payment_currency', readUInt32),        // 0 - means no currency (for blank equibits) and 1 -- means BitCoin
+    addProp('payment_tx_id', readHash),             // tx hash
+    addProp('issuance_tx_id', readHash),            // tx hash
+    addProp('payload', readVarSlice)                //
   ])({}, buffer)
 )
 
