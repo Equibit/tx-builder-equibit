@@ -108,12 +108,12 @@ offset += 4
 console.log(`BUFFER LEFT length = ${buffer.slice(offset).length}`)
 
 // For fixtures:
-console.log(`vin.0: ${buffer.slice(5, 153).toString('hex')}`)
-console.log(`vin.1: ${buffer.slice(153, 301).toString('hex')}`)
-console.log(`vout.0: ${buffer.slice(302, 405).toString('hex')}`)
-console.log(`vout.1: ${buffer.slice(405, 1334).toString('hex')}`)
-console.log(`vout.0.equibit: ${buffer.slice(336, 405).toString('hex')}`)
-console.log(`vout.1.equibit: ${buffer.slice(439, 1334).toString('hex')}`)
+// console.log(`vin.0: ${buffer.slice(5, 153).toString('hex')}`)
+// console.log(`vin.1: ${buffer.slice(153, 301).toString('hex')}`)
+// console.log(`vout.0: ${buffer.slice(302, 405).toString('hex')}`)
+// console.log(`vout.1: ${buffer.slice(405, 1334).toString('hex')}`)
+// console.log(`vout.0.equibit: ${buffer.slice(336, 405).toString('hex')}`)
+// console.log(`vout.1.equibit: ${buffer.slice(439, 1334).toString('hex')}`)
 
 /*
 02000000

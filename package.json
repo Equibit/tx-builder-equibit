@@ -9,7 +9,7 @@
   "scripts": {
     "test": "npm run lint && npm run mocha",
     "lint": "standard --fix",
-    "mocha": "nyc mocha -u tdd --timeout 999999 --colors test/ --recursive"
+    "mocha": "nyc mocha -u tdd --timeout 999999 --colors test/test.js"
   },
   "standard": {
     "env": [
@@ -17,7 +17,8 @@
     ]
   },
   "dependencies": {
-    "tx-builder": "0.4.5"
+    "tx-builder": "0.4.5",
+    "typeforce": "^1.11.4"
   },
   "devDependencies": {
     "assert": "^1.4.1",

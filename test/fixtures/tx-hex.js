@@ -99,7 +99,7 @@ module.exports = [{
       },
       {
         value: 50 * 100000000,
-        addresses: 'n17Q3YkRA7UXXcoec3rGxwHQ6F9SwG5WWf',
+        address: 'n17Q3YkRA7UXXcoec3rGxwHQ6F9SwG5WWf',
         equibit: {
           payment_currency: 0,
           payment_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
