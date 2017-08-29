@@ -31,7 +31,8 @@ const readEquibitData = buffer =>
   (
     compose([
       addProp('payment_currency', readUInt32),        // 0 - means no currency (for blank equibits) and 1 -- means BitCoin
-      addProp('payment_tx_id', readHash),             // 256 bit hash (8 bytes) - should this be 32 bytes?
+      addProp('payment_tx_id', readHash),             // tx hash
+      addProp('issuance_tx_id', readHash),            // tx hash
       addProp('payload', readVarSlice)                //
     ])({}, buffer)
   )
