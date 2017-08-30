@@ -41,10 +41,10 @@ const readVin = (buffer, offset) => {
   return offset
 }
 
-console.log('--- VIN-0 ---')
-offset = readVin(buffer, offset)
-console.log('--- VIN-1 ---')
-offset = readVin(buffer, offset)
+for (let i = 0; i < vinLen; i++) {
+  console.log(`--- VIN-${i} ---`)
+  offset = readVin(buffer, offset)
+}
 
 // VOUT
 const voutLen = varuint.decode(buffer, offset)
@@ -74,10 +74,17 @@ const readVout = (buffer, offset) => {
   console.log(`* equibit.payment_currency = ${paymentCurrency}, offset=${offset}, length=4`)
   offset += 4
 
-  const hashReversed = buffer.slice(offset, offset + 32)
-  const paymentTxId = Buffer.from(hashReversed, 'hex').reverse().toString('hex')
-  console.log(`* equibit.payment_tx_id = ${paymentTxId.toString('hex')}, offset=${offset}, length=32`)
-  offset += 32
+  // const hashReversed = buffer.slice(offset, offset + 32)
+  // const paymentTxId = Buffer.from(hashReversed, 'hex').reverse().toString('hex')
+  // console.log(`* equibit.payment_tx_id = ${paymentTxId.toString('hex')}, offset=${offset}, length=32`)
+  // offset += 32
+
+  const paymentTxIdLength = varuint.decode(buffer, offset)
+  console.log(`* equibit.paymentTxIdLength = ${paymentTxIdLength}, offset=${offset}, length=${varuint.decode.bytes}`)
+  offset += varuint.decode.bytes
+  const paymentTxId = buffer.slice(offset, offset + paymentTxIdLength).reverse().toString('hex')
+  console.log(`* equibit.payment_tx_id = ${paymentTxId.toString('hex')}, offset=${offset}, length=${paymentTxIdLength}`)
+  offset += paymentTxIdLength
 
   const hashReversed2 = buffer.slice(offset, offset + 32)
   const issuanceTxId = Buffer.from(hashReversed2, 'hex').reverse().toString('hex')
@@ -87,33 +94,33 @@ const readVout = (buffer, offset) => {
   const payloadLength = varuint.decode(buffer, offset)
   console.log(`* equibit.payloadLength = ${payloadLength}, offset=${offset}, length=${varuint.decode.bytes}`)
   offset += varuint.decode.bytes
-
-  const payload = buffer.slice(offset, offset + payloadLength)
-  console.log(`* equibit.payload = ${payload.toString()}, offset=${offset}, length=${payloadLength}`)
+  const issuanceJson = buffer.slice(offset, offset + payloadLength)
+  console.log(`* equibit.issuance_json = ${issuanceJson.toString()}, offset=${offset}, length=${payloadLength}`)
   offset += payloadLength
 
   return offset
 }
 
-console.log('--- VOUT-0 ---')
-offset = readVout(buffer, offset)
-console.log('--- VOUT-1 ---')
-offset = readVout(buffer, offset)
+for (let i = 0; i < voutLen; i++) {
+  console.log(`--- VOUT-${i} ---`)
+  offset = readVout(buffer, offset)
+}
 
 // Locktime
 const locktime = buffer.readUInt32LE(offset)
 console.log(`* locktime = ${locktime}, offset=${offset}, length=4`)
 offset += 4
 
-console.log(`BUFFER LEFT length = ${buffer.slice(offset).length}`)
+console.log(`BUFFER LEFT length = ${buffer.slice(offset).length}, ${buffer.slice(offset).toString('hex')}`)
 
 // For fixtures:
-// console.log(`vin.0: ${buffer.slice(5, 153).toString('hex')}`)
-// console.log(`vin.1: ${buffer.slice(153, 301).toString('hex')}`)
-// console.log(`vout.0: ${buffer.slice(302, 405).toString('hex')}`)
-// console.log(`vout.1: ${buffer.slice(405, 1334).toString('hex')}`)
-// console.log(`vout.0.equibit: ${buffer.slice(336, 405).toString('hex')}`)
-// console.log(`vout.1.equibit: ${buffer.slice(439, 1334).toString('hex')}`)
+console.log(`vin.0: ${buffer.slice(5, 119).toString('hex')}`)
+console.log(`vin.1: ${buffer.slice(119, 233).toString('hex')}`)
+console.log(`vin.2: ${buffer.slice(233, 347).toString('hex')}`)
+console.log(`vout.0: ${buffer.slice(348, 420).toString('hex')}`)
+console.log(`vout.1: ${buffer.slice(420, 492).toString('hex')}`)
+console.log(`vout.0.equibit: ${buffer.slice(382, 420).toString('hex')}`)
+console.log(`vout.1.equibit: ${buffer.slice(454, 492).toString('hex')}`)
 
 /*
 02000000

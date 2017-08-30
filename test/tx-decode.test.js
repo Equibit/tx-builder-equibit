@@ -27,7 +27,7 @@ describe('Decode hex', function () {
     // TODO: add decodeScript to tx-decoder.
     it('should decode script', function () {
       const scriptAsm = bscript.toASM(input.scriptSig)
-      assert.equal(scriptAsm.replace('01 ', '[ALL] '), fixture.decoded.vin[0].scriptSig.asm)
+      assert.equal(scriptAsm, fixture.decoded.vin[0].scriptSig.asm.replace('[ALL]', '01'))
     })
     it('should read sequence', function () {
       assert.equal(input.sequence, fixture.decoded.vin[0].sequence)
@@ -42,7 +42,7 @@ describe('Decode hex', function () {
     const [input, bufferLeft] = readInput(buffer.slice(offset))
     it('should decode script', function () {
       const scriptAsm = bscript.toASM(input.scriptSig)
-      assert.equal(scriptAsm.replace('01 ', '[ALL] '), fixture.decoded.vin[1].scriptSig.asm)
+      assert.equal(scriptAsm, fixture.decoded.vin[1].scriptSig.asm.replace('[ALL]', '01'))
     })
     it('should leave some buffer', function () {
       assert.ok(bufferLeft)
@@ -103,7 +103,7 @@ describe('Decode hex', function () {
         assert.equal(res[0].equibit.payment_tx_id, fixture.decoded.vout[0].equibit.payment_tx_id)
       })
       it('should read payload (empty string)', function () {
-        assert.equal(res[0].equibit.payload.toString('hex'), fixture.decoded.vout[0].equibit.payload)
+        assert.equal(res[0].equibit.issuance_json.toString('hex'), fixture.decoded.vout[0].equibit.issuance_json)
       })
       it('should read payment_currency', function () {
         assert.equal(res[1].equibit.payment_currency, fixture.decoded.vout[1].equibit.payment_currency)
@@ -112,7 +112,7 @@ describe('Decode hex', function () {
         assert.equal(res[1].equibit.payment_tx_id, fixture.decoded.vout[1].equibit.payment_tx_id)
       })
       it('should read payload (JSON string)', function () {
-        assert.equal(res[1].equibit.payload.toString(), fixture.decoded.vout[1].equibit.payload)
+        assert.equal(res[1].equibit.issuance_json.toString(), fixture.decoded.vout[1].equibit.issuance_json)
       })
     })
   })

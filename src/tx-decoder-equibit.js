@@ -41,9 +41,9 @@ const readEquibitData = buffer =>
 (
   compose([
     addProp('payment_currency', readUInt32),        // 0 - means no currency (for blank equibits) and 1 -- means BitCoin
-    addProp('payment_tx_id', readHash),             // tx hash
+    addProp('payment_tx_id', readVarSlice),         // std::vector<uint8_t>
     addProp('issuance_tx_id', readHash),            // tx hash
-    addProp('payload', readVarSlice)                //
+    addProp('issuance_json', readVarSlice)          //
   ])({}, buffer)
 )
 
