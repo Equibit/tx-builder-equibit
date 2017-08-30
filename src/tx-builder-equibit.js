@@ -92,13 +92,14 @@ const buildEquibitData = equbitData => {
     payment_currency: 'Number',
     payment_tx_id: 'String',
     issuance_tx_id: 'String',
-    payload: 'String'
+    issuance_json: 'String'
   }, equbitData)
   return compose([
     prop('payment_currency', bufferUInt32),        // 0 - means no currency (for blank equibits) and 1 -- means BitCoin
-    prop('payment_tx_id', bufferHash),             // tx hash
+    // TODO: don't forget to reverse tx id here:
+    prop('payment_tx_id', bufferVarSlice('hex')),  // var length slice
     prop('issuance_tx_id', bufferHash),            // tx hash
-    prop('payload', bufferVarSlice('ascii'))       // JSON payload, var length slice
+    prop('issuance_json', bufferVarSlice('ascii')) // JSON payload, var length slice
   ])(equbitData, EMPTY_BUFFER)
 }
 
