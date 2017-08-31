@@ -1,8 +1,8 @@
 {
   "name": "tx-builder-equibit",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Equibit blockchain transaction builder and decoder",
-  "main": "tx-builder.js",
+  "main": "index.js",
   "repository": "https://github.com/Equibit/tx-decoder.git",
   "author": "EDC <info@equibitgroup.com>",
   "license": "MIT",
@@ -17,7 +17,7 @@
     ]
   },
   "dependencies": {
-    "tx-builder": "^0.5.0",
+    "tx-builder": "^0.5.1",
     "typeforce": "^1.11.4"
   },
   "devDependencies": {
