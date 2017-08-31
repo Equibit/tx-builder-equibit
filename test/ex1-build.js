@@ -21,7 +21,7 @@ const tx = {
     address: 'mxk5zYRwVWDAwgKYaAadDeiCjY67ACAHLt',
     equibit: {
       payment_currency: 0,
-      payment_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
+      payment_tx_id: '',
       issuance_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
       payload: ''
     }
@@ -30,7 +30,7 @@ const tx = {
     address: 'mm2zdwmiVBR7ipNiN3tr4CCu6sS5tFwKna',
     equibit: {
       payment_currency: 0,
-      payment_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
+      payment_tx_id: '',
       issuance_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
       payload: ''
     }
