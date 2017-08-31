@@ -1,6 +1,6 @@
 {
   "name": "tx-builder-equibit",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Equibit blockchain transaction builder and decoder",
   "main": "tx-builder.js",
   "repository": "https://github.com/Equibit/tx-decoder.git",
@@ -17,7 +17,7 @@
     ]
   },
   "dependencies": {
-    "tx-builder": "0.4.6",
+    "tx-builder": "^0.5.0",
     "typeforce": "^1.11.4"
   },
   "devDependencies": {
@@ -30,6 +30,15 @@
     "varuint-bitcoin": "^1.0.4"
   },
   "browserify": {
-    "transform": [["babelify", { "presets": ["env"] }]]
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "env"
+          ]
+        }
+      ]
+    ]
   }
 }

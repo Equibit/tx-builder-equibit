@@ -15,11 +15,11 @@ describe('Decode hex', function () {
   describe('readInput VIN.0', function () {
     const offset = 4 + 1
     const [input, bufferLeft] = readInput(buffer.slice(offset))
-    it('should read hash', function () {
-      assert.equal(input.hash.toString('hex'), fixture.decoded.vin[0].txid)
+    it('should read txid', function () {
+      assert.equal(input.txid.toString('hex'), fixture.decoded.vin[0].txid)
     })
-    it('should read index', function () {
-      assert.equal(input.index, fixture.decoded.vin[0].vout)
+    it('should read vout index', function () {
+      assert.equal(input.vout, fixture.decoded.vin[0].vout)
     })
     it('should read script', function () {
       assert.equal(input.scriptSig.toString('hex'), fixture.decoded.vin[0].scriptSig.hex)

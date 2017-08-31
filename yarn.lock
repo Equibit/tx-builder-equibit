@@ -2176,9 +2176,9 @@ tryit@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/tryit/-/tryit-1.0.3.tgz#393be730a9446fd1ead6da59a014308f36c289cb"
 
-tx-builder@0.4.5:
-  version "0.4.5"
-  resolved "https://registry.yarnpkg.com/tx-builder/-/tx-builder-0.4.5.tgz#1e1d4c6a3ad09153a67c608d619e25df53411744"
+tx-builder@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/tx-builder/-/tx-builder-0.5.0.tgz#c0ee9bbc4c93d1f6e6b4166d3e6bb5fa32d252a0"
   dependencies:
     bip39 "^2.3.1"
     bitcoinjs-lib "^3.1.1"
@@ -2197,13 +2197,7 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typeforce@^1.11.1, typeforce@^1.8.7:
-  version "1.11.1"
-  resolved "https://registry.yarnpkg.com/typeforce/-/typeforce-1.11.1.tgz#ab66f3b094856d00ed0c8913b0742d3dabfafe62"
-  dependencies:
-    inherits "^2.0.1"
-
-typeforce@^1.11.4:
+typeforce@^1.11.1, typeforce@^1.11.4, typeforce@^1.8.7:
   version "1.11.4"
   resolved "https://registry.yarnpkg.com/typeforce/-/typeforce-1.11.4.tgz#07ce3abcce836761243ae483dce5bc609786205c"
   dependencies:

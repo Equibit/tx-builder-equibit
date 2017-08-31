@@ -85,19 +85,19 @@ module.exports = [{
     vin: [
       {
         txid: 'f59051c1170ecde117c3008f685b4c41a081d5b7457ae5aff479bcfd3435701f',
-        index: 0,
+        vout: 0,
         script: '',
         sequence: 4294967294
       },
       {
         txid: '27d2e6452809d64c58f2a1c10d171c8f34df83f7193055fda1f8f588d743d75a',
-        index: 0,
+        vout: 0,
         script: '',
         sequence: 4294967294
       },
       {
         txid: '9c2dd873db5d189af6c63d2595215be16a148d7fd807c395f962592925de176c',
-        index: 0,
+        vout: 0,
         scriptSig: '',
         sequence: 4294967294
       }

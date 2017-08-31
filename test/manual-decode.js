@@ -19,11 +19,11 @@ offset += varuint.decode.bytes
 const readVin = (buffer, offset) => {
   const hashReversed = buffer.slice(offset, offset + 32)
   const hash = Buffer.from(hashReversed, 'hex').reverse().toString('hex')
-  console.log(`* hash = ${hash.toString('hex')}, offset=${offset}, length=32`)
+  console.log(`* txid = ${hash.toString('hex')}, offset=${offset}, length=32`)
   offset += 32
 
   const index = buffer.readUInt32LE(offset)
-  console.log(`* index = ${index}, offset=${offset}, length=4`)
+  console.log(`* vout index = ${index}, offset=${offset}, length=4`)
   offset += 4
 
   const scriptLen = varuint.decode(buffer, offset)
