@@ -69,8 +69,15 @@ describe('tx-build-equibit', function () {
   })
 
   describe('buildTx', function () {
-    it('should build a transaction', function () {
+    it('should build an empty eqb transaction', function () {
       const buffer = buildTx(fixture.tx)
+      assert.equal(buffer.toString('hex'), fixture.hex)
+    })
+    it('should build an issuance transaction', function () {
+      const fixture = require('./fixtures/tx-hex-issuance')[0]
+      const tx = fixture.tx
+      tx.vin.forEach(vin => { vin.keyPair = fixtureNode.keyPair })
+      const buffer = buildTx(tx)
       assert.equal(buffer.toString('hex'), fixture.hex)
     })
   })
