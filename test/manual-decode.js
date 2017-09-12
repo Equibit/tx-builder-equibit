@@ -114,13 +114,13 @@ offset += 4
 console.log(`BUFFER LEFT length = ${buffer.slice(offset).length}, ${buffer.slice(offset).toString('hex')}`)
 
 // For fixtures:
-console.log(`vin.0: ${buffer.slice(5, 119).toString('hex')}`)
-console.log(`vin.1: ${buffer.slice(119, 233).toString('hex')}`)
-console.log(`vin.2: ${buffer.slice(233, 347).toString('hex')}`)
-console.log(`vout.0: ${buffer.slice(348, 420).toString('hex')}`)
-console.log(`vout.1: ${buffer.slice(420, 492).toString('hex')}`)
-console.log(`vout.0.equibit: ${buffer.slice(382, 420).toString('hex')}`)
-console.log(`vout.1.equibit: ${buffer.slice(454, 492).toString('hex')}`)
+console.log(`vin.0: ${buffer.slice(5, 152).toString('hex')}`)
+console.log(`vin.1: ${buffer.slice(152, 300).toString('hex')}`)
+console.log(`vin.2: ${buffer.slice(300, 447).toString('hex')}`)
+console.log(`vout.0: ${buffer.slice(448, 520).toString('hex')}`)
+console.log(`vout.1: ${buffer.slice(520, 592).toString('hex')}`)
+console.log(`vout.0.equibit: ${buffer.slice(482, 520).toString('hex')}`)
+console.log(`vout.1.equibit: ${buffer.slice(554, 592).toString('hex')}`)
 
 /*
 02000000
