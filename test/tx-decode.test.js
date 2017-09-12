@@ -117,8 +117,8 @@ describe('Decode hex', function () {
     })
   })
 
-  describe('decodeTx', function () {
-    it('should decode tx', function () {
+  describe.only('decodeTx', function () {
+    it('should decode empty eqb tx', function () {
       let decoded
       try {
         decoded = decodeTx(buffer)
@@ -126,6 +126,18 @@ describe('Decode hex', function () {
         console.log(e)
       }
       assert.equal(decoded[0].locktime, fixture.decoded.locktime)
+    })
+    it('should decode issuance tx', function () {
+      const fixture = require('./fixtures/tx-hex-issuance')[0]
+      const hex = fixture.hex
+      const buffer = Buffer.from(hex, 'hex')
+      let decoded
+      try {
+        decoded = decodeTx(buffer)
+      } catch (e) {
+        console.log(e)
+      }
+      assert.equal(decoded[0].vout[0].equibit.issuance_json.toString('ascii'), fixture.decoded.vout[0].equibit.issuance_json)
     })
   })
 })
