@@ -8,6 +8,7 @@ const hdNode = root.derivePath(`m/44'/0'/0'`)
 
 const addrHdNode = hdNode.derive(0).derive(0)
 const address = addrHdNode.getAddress()
+const xpub = hdNode.neutered().toBase58()
 
 // 0: mm2zdwmiVBR7ipNiN3tr4CCu6sS5tFwKna
 // 1: mxk5zYRwVWDAwgKYaAadDeiCjY67ACAHLt
@@ -18,5 +19,6 @@ module.exports = {
   hdNode,
   addrHdNode,
   address,
-  keyPair: addrHdNode.keyPair
+  keyPair: addrHdNode.keyPair,
+  xpub
 }
