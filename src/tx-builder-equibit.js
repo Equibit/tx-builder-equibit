@@ -15,6 +15,7 @@
  *    - payload, string
  */
 
+const bitcoin = require('bitcoinjs-lib')
 const Buffer = require('safe-buffer').Buffer
 const typeforce = require('typeforce')
 
@@ -79,7 +80,7 @@ const bufferOutput = vout => {
     prop('value', bufferUInt64),                  // 8 bytes, Amount in satoshis
     addProp(
       'scriptPubKey',
-      prop('address', voutScript)
+      prop('address', voutScript(bitcoin.networks.testnet))
     ),
     prop('scriptPubKey', bufferVarSlice('hex')),  // 1-9 bytes (VarInt), Locking-Script Size; Variable, Locking-Script
     prop('equibit', buildEquibitData)
