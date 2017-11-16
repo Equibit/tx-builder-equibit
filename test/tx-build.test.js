@@ -12,6 +12,8 @@ const {
 const fixtures = require('./fixtures/tx-hex')
 const fixture = fixtures[0]
 const fixtureNode = require('./fixtures/hdnode')
+const scriptBuilder = require('../src/script-builder')
+const fixtureHtlc = require('./fixtures/tx-htlc')
 
 describe('tx-build-equibit', function () {
   const keyPair = fixtureNode.keyPair
@@ -79,6 +81,17 @@ describe('tx-build-equibit', function () {
       tx.vin.forEach(vin => { vin.keyPair = fixtureNode.keyPair })
       const buffer = buildTx(tx)
       assert.equal(buffer.toString('hex'), fixture.hex)
+    })
+  })
+
+  describe('build HTLC transaction', function () {
+    const secretPair = scriptBuilder.generateSecret(32)
+    const secretHash = secretPair.hash.toString('hex')
+    const tx = fixtureHtlc.tx
+    it('should build tx', function () {
+      const htlcScript = scriptBuilder.hashTimelockContract(tx.vout[0].receiverAddr, tx.vout[0].refundAddr, secretHash, tx.vout[0].locktime)
+      // console.log(`htlcScript ${htlcScript.length} = ${htlcScript.toString('hex')}`)
+      assert.equal(htlcScript.length, 90)
     })
   })
 })

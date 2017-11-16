@@ -19,7 +19,7 @@
   "dependencies": {
     "randombytes": "^2.0.5",
     "safe-buffer": "^5.1.1",
-    "tx-builder": "^0.10.0",
+    "tx-builder": "^0.11.0",
     "typeforce": "^1.11.7"
   },
   "devDependencies": {
