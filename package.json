@@ -17,16 +17,18 @@
     ]
   },
   "dependencies": {
-    "tx-builder": "^0.5.1",
-    "typeforce": "^1.11.4"
+    "randombytes": "^2.0.5",
+    "safe-buffer": "^5.1.1",
+    "tx-builder": "^0.12.0",
+    "typeforce": "^1.11.7"
   },
   "devDependencies": {
     "assert": "^1.4.1",
-    "bitcoinjs-lib": "^3.1.1",
+    "bitcoin-script": "^0.1.1",
+    "bitcoinjs-lib": "^3.3.0",
     "mocha": "^3.4.2",
-    "nyc": "^11.0.3",
-    "safe-buffer": "^5.1.1",
-    "standard": "^10.0.2",
+    "nyc": "^11.3.0",
+    "standard": "^10.0.3",
     "varuint-bitcoin": "^1.0.4"
   },
   "browserify": {

@@ -10,7 +10,7 @@ const {
   readVarSlice
 } = require('tx-builder/src/buffer-read')
 
-// decodeTx :: buffer -> [vin, buffer]
+// decodeTx :: Buffer -> [TxBuffer, Buffer]
 const decodeTx = buffer =>
 (
   compose([

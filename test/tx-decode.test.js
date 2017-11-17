@@ -117,7 +117,7 @@ describe('Decode hex', function () {
     })
   })
 
-  describe.only('decodeTx', function () {
+  describe('decodeTx', function () {
     it('should decode empty eqb tx', function () {
       let decoded
       try {
