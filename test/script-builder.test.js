@@ -9,7 +9,7 @@ describe('script-builder', function () {
   const secretPair = scriptBuilder.generateSecret(32)
 
   describe('hashTimelockContract', function () {
-    it('should create a locking script', function () {
+    it('should create HTLC locking script', function () {
       const secretHash = secretPair.hash.toString('hex')
       const locktime = 20
       assert.ok(scriptBuilder.hashTimelockContract(addr, addr, secretHash, locktime).toString('hex'))

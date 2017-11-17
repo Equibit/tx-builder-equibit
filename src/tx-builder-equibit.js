@@ -31,7 +31,9 @@ const {
 const {
   compose,
   prop,
-  addProp
+  addProp,
+  iff,
+  hasNo
 } = require('tx-builder/src/compose-build')
 const {
   bufferInputs,
@@ -43,6 +45,11 @@ const {
 } = require('tx-builder/src/tx-builder')
 
 const EMPTY_BUFFER = Buffer.allocUnsafe(0)
+
+const log = msg => obj => {
+  console.log(`LOG::: msg`, obj)
+  return EMPTY_BUFFER
+}
 
 /**
  * Main function to build Equibit transaction.
@@ -73,14 +80,17 @@ const buildTx = tx => {
 const bufferOutput = vout => {
   typeforce({
     value: 'Number',
-    address: 'String',
+    address: typeforce.maybe('String'),
     equibit: 'Object'
   }, vout)
   return compose([
     prop('value', bufferUInt64),                  // 8 bytes, Amount in satoshis
-    addProp(
-      'scriptPubKey',
-      prop('address', voutScript(bitcoin.networks.testnet))
+    iff(
+      hasNo('scriptPubKey'),
+      addProp(
+        'scriptPubKey',
+        prop('address', voutScript(bitcoin.networks.testnet))
+      )
     ),
     prop('scriptPubKey', bufferVarSlice('hex')),  // 1-9 bytes (VarInt), Locking-Script Size; Variable, Locking-Script
     prop('equibit', buildEquibitData)
@@ -115,5 +125,6 @@ module.exports = {
   bufferInputs,
   bufferInput,
   bufferOutput,
-  vinScript
+  vinScript,
+  log
 }

@@ -85,13 +85,19 @@ describe('tx-build-equibit', function () {
   })
 
   describe('build HTLC transaction', function () {
-    const secretPair = scriptBuilder.generateSecret(32)
-    const secretHash = secretPair.hash.toString('hex')
+    // const secretPair = scriptBuilder.generateSecret(16)
+    // const secretHash = secretPair.hash.toString('hex')
+    const secretHash = fixtureHtlc.secretHash
     const tx = fixtureHtlc.tx
-    it('should build tx', function () {
+    tx.vin[0].keyPair = keyPair
+    it('should build a valid transaction with HTLC locking script', function () {
       const htlcScript = scriptBuilder.hashTimelockContract(tx.vout[0].receiverAddr, tx.vout[0].refundAddr, secretHash, tx.vout[0].locktime)
       // console.log(`htlcScript ${htlcScript.length} = ${htlcScript.toString('hex')}`)
       assert.equal(htlcScript.length, 90)
+      tx.vout[0].scriptPubKey = htlcScript
+      const buffer = buildTx(tx)
+      // console.log(`htlc buffer tx = ${buffer.toString('hex')}`)
+      assert.equal(buffer.toString('hex'), fixtureHtlc.hex)
     })
   })
 })

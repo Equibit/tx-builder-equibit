@@ -25,7 +25,7 @@ const hashTimelockContract = (redeemerAddr, funderAddr, commitment, locktime) =>
   const funderHex = baddress.fromBase58Check(funderAddr).hash.toString('hex')
 
   const scriptAsm = normalizeScript(scripts.hashTimeLock(redeemerHex, funderHex, commitment, locktime))
-  console.log(`scriptAsm = ${scriptAsm}`)
+  // console.log(`scriptAsm = ${scriptAsm}`)
   const scriptSig = bscript.fromASM(scriptAsm)
   return scriptSig
 }

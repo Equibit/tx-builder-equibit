@@ -17,7 +17,6 @@ module.exports = {
 // Buyer: `signature publicKey secretX`
 // Seller `signature publicKey`
 
-
 // Ilya Buyer:
 // - generate SecretX, + hashSecret
 // TX1 Bitcoin: if (hashSecret && Sergey) else (timelock 72 && Ilya)
@@ -30,7 +29,6 @@ module.exports = {
 
 // Sergey: claim bitcoin using secret:
 // TX4 Bitcoin: TX1 -> (Sergey signature pubKey SecretX) -> to Sergey address
-
 
 // Passport:
 // "IlyaEqb1 SignedBy PassportAuthority" === "<equibit Ilya address> <pubKey Authority> <signature Authority>"
