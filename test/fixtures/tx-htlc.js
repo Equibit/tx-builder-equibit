@@ -53,7 +53,7 @@ module.exports = {
       hashSecret: '',
       receiverAddr: 'mm2zdwmiVBR7ipNiN3tr4CCu6sS5tFwKna', // #0
       refundAddr: 'mxk5zYRwVWDAwgKYaAadDeiCjY67ACAHLt',   // #1
-      locktime: 20,
+      locktime: 32,
       equibit: {
         payment_currency: 0,
         payment_tx_id: '',
