@@ -1,6 +1,6 @@
 {
   "name": "tx-builder-equibit",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Equibit blockchain transaction builder and decoder",
   "main": "index.js",
   "repository": "https://github.com/Equibit/tx-decoder.git",
