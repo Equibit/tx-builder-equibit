@@ -5,6 +5,7 @@ const typeforce = require('typeforce')
 const types = require('tx-builder/src/types')
 const randomBytes = require('randombytes')
 const bitcoin = require('bitcoinjs-lib')
+const scriptNumber = require('bitcoinjs-lib/src/script_number')
 const bcrypto = bitcoin.crypto
 const bscript = bitcoin.script
 const baddress = bitcoin.address
@@ -23,7 +24,7 @@ const hashTimelockContract = (redeemerAddr, funderAddr, commitment, locktime) =>
 
   const redeemerHex = baddress.fromBase58Check(redeemerAddr).hash.toString('hex')
   const funderHex = baddress.fromBase58Check(funderAddr).hash.toString('hex')
-  const locktimeHex = locktime.toString(16)
+  const locktimeHex = scriptNumber.encode(locktime).toString('hex')
 
   const scriptAsm = normalizeScript(scripts.hashTimeLock(redeemerHex, funderHex, commitment, locktimeHex))
   // console.log(`scriptAsm = ${scriptAsm}`)
