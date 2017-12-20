@@ -66,18 +66,18 @@ const buildTx = tx => {
   }, tx)
   return compose([
     prop('version', bufferInt32),                   // 4 bytes
-    bufferInputs('vin', bufferInput),               // 1-9 bytes (VarInt), Input counter; Variable, Inputs
-    prop('vout', mapConcatBuffers(bufferOutput)),   // 1-9 bytes (VarInt), Output counter; Variable, Outputs
+    bufferInputs('vin', bufferInputEqb),               // 1-9 bytes (VarInt), Input counter; Variable, Inputs
+    prop('vout', mapConcatBuffers(bufferOutputEqb)),   // 1-9 bytes (VarInt), Output counter; Variable, Outputs
     prop('locktime', bufferUInt32)                  // 4 bytes
   ])(tx, EMPTY_BUFFER)
 }
 
 /**
- * Function bufferOutput is the main that implements equibit transaction structure difference.
+ * Function bufferOutputEqb is the main that implements equibit transaction structure difference.
  * @param vout
  */
-// bufferOutput :: Object -> Buffer
-const bufferOutput = vout => {
+// bufferOutputEqb :: Object -> Buffer
+const bufferOutputEqb = vout => {
   typeforce({
     value: 'Number',
     address: typeforce.maybe('String'),
@@ -115,16 +115,16 @@ const buildEquibitData = equbitData => {
 }
 
 // Prepare reusable functions:
-const buildTxCopy = makeBuildTxCopy(bufferOutput)
-const bufferInput = makeBufferInput(buildTxCopy)
+const buildTxCopyEqb = makeBuildTxCopy(bufferOutputEqb)
+const bufferInputEqb = makeBufferInput(buildTxCopyEqb)
 
 module.exports = {
   buildTx,
-  buildTxCopy,
+  buildTxCopyEqb,
   buildEquibitData,
   bufferInputs,
-  bufferInput,
-  bufferOutput,
+  bufferInputEqb,
+  bufferOutputEqb,
   vinScript,
   log
 }
