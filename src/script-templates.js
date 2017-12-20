@@ -13,7 +13,7 @@ module.exports = {
   }
 }
 
-// scriptPubKey:
+// To unlock HTLC with scriptSig:
 // Buyer: `signature publicKey secretX`
 // Seller `signature publicKey`
 
@@ -29,9 +29,3 @@ module.exports = {
 
 // Sergey: claim bitcoin using secret:
 // TX4 Bitcoin: TX1 -> (Sergey signature pubKey SecretX) -> to Sergey address
-
-// Passport:
-// "IlyaEqb1 SignedBy PassportAuthority" === "<equibit Ilya address> <pubKey Authority> <signature Authority>"
-
-// IBM Issuer:
-// "PassportAuthorityPubKey SignedBy IBM" === "<equibit Authority address> <pubKey IBM> <signature IBM>"

@@ -14,6 +14,9 @@ const scripts = require('./script-templates')
 
 const normalizeScript = script => script.replace(/\n+/g, ' ').replace(/\s+/g, ' ').trim()
 
+/**
+ * Creates script for `scriptPubKey` field of a transaction output
+ */
 const hashTimelockContract = (redeemerAddr, funderAddr, commitment, locktime) => {
   typeforce(types.tuple(
     types.Address,
@@ -21,6 +24,9 @@ const hashTimelockContract = (redeemerAddr, funderAddr, commitment, locktime) =>
     types.String,
     types.Number
   ), [redeemerAddr, funderAddr, commitment, locktime])
+  if (locktime < 0) {
+    throw new Error('Expected locktime to be a positive number')
+  }
 
   const redeemerHex = baddress.fromBase58Check(redeemerAddr).hash.toString('hex')
   const funderHex = baddress.fromBase58Check(funderAddr).hash.toString('hex')
@@ -28,8 +34,8 @@ const hashTimelockContract = (redeemerAddr, funderAddr, commitment, locktime) =>
 
   const scriptAsm = normalizeScript(scripts.hashTimeLock(redeemerHex, funderHex, commitment, locktimeHex))
   // console.log(`scriptAsm = ${scriptAsm}`)
-  const scriptSig = bscript.fromASM(scriptAsm)
-  return scriptSig
+  const scriptPubKey = bscript.fromASM(scriptAsm)
+  return scriptPubKey
 }
 
 const generateSecret = (length) => {
