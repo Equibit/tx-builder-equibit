@@ -10,6 +10,18 @@ module.exports = {
       OP_ENDIF
       OP_EQUALVERIFY OP_CHECKSIG
     `
+  },
+  simpleHashLock: function (hashSecret) {
+    return `
+      OP_SHA256 ${hashSecret} OP_EQUALVERIFY
+    `
+  },
+  simpleHashLockWithAddress: function (redeemerAddr, hashSecret) {
+    return `
+      OP_SHA256 ${hashSecret} OP_EQUALVERIFY
+      OP_DUP OP_HASH160 ${redeemerAddr}
+      OP_EQUALVERIFY OP_CHECKSIG
+    `
   }
 }
 
