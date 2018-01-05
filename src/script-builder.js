@@ -46,6 +46,13 @@ const simpleHashlockContract = (commitment) => {
   const scriptPubKey = bscript.fromASM(scriptAsm)
   return scriptPubKey
 }
+const simpleEqualContract = (value) => {
+  typeforce(types.String, value)
+
+  const scriptAsm = normalizeScript(scripts.simpleEqual(value))
+  const scriptPubKey = bscript.fromASM(scriptAsm)
+  return scriptPubKey
+}
 
 // This is for testing a contract with hashlock and address:
 const simpleHashlockAddrContract = (redeemerAddr, commitment) => {
@@ -55,7 +62,18 @@ const simpleHashlockAddrContract = (redeemerAddr, commitment) => {
   ), [redeemerAddr, commitment])
 
   const redeemerHex = baddress.fromBase58Check(redeemerAddr).hash.toString('hex')
-  const scriptAsm = normalizeScript(scripts.hashTimeLock(redeemerHex, commitment))
+  const scriptAsm = normalizeScript(scripts.simpleHashLockWithAddress(redeemerHex, commitment))
+  const scriptPubKey = bscript.fromASM(scriptAsm)
+  return scriptPubKey
+}
+const simpleHashlockSigContract = (redeemerAddr, commitment) => {
+  typeforce(types.tuple(
+    types.Address,
+    types.String,
+  ), [redeemerAddr, commitment])
+
+  const redeemerHex = baddress.fromBase58Check(redeemerAddr).hash.toString('hex')
+  const scriptAsm = normalizeScript(scripts.simpleHashLockWithSig(redeemerHex, commitment))
   const scriptPubKey = bscript.fromASM(scriptAsm)
   return scriptPubKey
 }
@@ -71,5 +89,7 @@ module.exports = {
   hashTimelockContract,
   simpleHashlockContract,
   simpleHashlockAddrContract,
+  simpleHashlockSigContract,
+  simpleEqualContract,
   generateSecret
 }
