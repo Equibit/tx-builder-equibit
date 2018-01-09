@@ -5,7 +5,8 @@ const {
   hashTimelockContract,
   generateSecret,
   simpleHashlockContract,
-  simpleHashlockAddrContract
+  simpleHashlockAddrContract,
+  simpleHashlockSigContract
 } = require('./src/script-builder')
 
 module.exports = {
@@ -15,5 +16,6 @@ module.exports = {
   hashTimelockContract,
   simpleHashlockContract,
   simpleHashlockAddrContract,
+  simpleHashlockSigContract,
   generateSecret
 }

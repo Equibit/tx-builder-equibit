@@ -27,10 +27,10 @@ const hashSecret = hashSecretBuffer.toString('hex')     // 88f1f9dcce43d0aea877b
 console.log(`secret = ${secret}, hashSecret = ${hashSecret}`)
 
 // HTLC SCRIPT:
-// const htlcScript = hashTimelockContract(toAddress, refundAddress, hashlock, timelock)
-// const htlcScript = simpleHashlockContract(hashSecret)
+const htlcScript = hashTimelockContract(addr1, addr0, hashSecret, 144)
+// const htlcScript = simpleHashlockContract(hashSecret)            // OK
 // const htlcScript = simpleHashlockAddrContract(addr1, hashSecret)
-const htlcScript = simpleHashlockSigContract(addr1, hashSecret)
+// const htlcScript = simpleHashlockSigContract(addr1, hashSecret)  // OK
 console.log(`htlcScript = ${htlcScript.toString('hex')}`)
 
 const equibitData = {
@@ -48,7 +48,7 @@ const txConfig = {
   version: 1,
   locktime: 104,
   vin: [{
-    txid: '05ff7879d75dc37866e5cab8a088a9ceb3ef56e5eae945b0183410eddbb3b00a',
+    txid: 'e2efad46d8052c34fe986882c5c6f933163ff9bd55ba3882d06dbaa554693b16',
     vout: 0,
     keyPair: node0.keyPair,
     sequence: 4294967294
@@ -71,9 +71,14 @@ const txConfigSpend = {
   version: 1,
   locktime: 104,
   vin: [{
-    txid: '1a264c2ae371b0b4790ba5cc9f7b4c4f8ebb77f91cc9fd2631012d80e7341997',
+    txid: 'a82d7aa138e3273b2f9a99752dbbc03e17276ecc66896776d51cb2e26a0ca461',
     vout: 0,
-    htlcSecret: 'd7913af1429cdb20ff3caf621368a9040361524895311180487a5c06df3fd9ae', //secret,
+    htlc: {
+      secret: secret,
+      refundAddr: addr0,
+      timelock: 144
+    },
+    refundAddr: addr0,
     keyPair: node1.keyPair,
     sequence: 4294967294
   }],

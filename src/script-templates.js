@@ -1,5 +1,8 @@
 module.exports = {
   hashTimeLock: function (redeemerAddr, funderAddr, hashSecret, locktime) {
+    // To unlock:
+    //   - A: "sig publicKey secret 1"
+    //   - B: "sig publicKey 0"
     return `
       OP_IF
         OP_SHA256 ${hashSecret} OP_EQUALVERIFY
@@ -37,8 +40,8 @@ module.exports = {
 }
 
 // To unlock HTLC with scriptSig:
-// Buyer: `signature publicKey secretX`
-// Seller `signature publicKey`
+// Buyer: `signature publicKey secretX 1`
+// Seller `signature publicKey 0`
 
 // Ilya Buyer:
 // - generate SecretX, + hashSecret
