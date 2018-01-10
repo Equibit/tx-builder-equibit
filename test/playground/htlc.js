@@ -1,15 +1,15 @@
 const Buffer = require('safe-buffer').Buffer
-const randomBytes = require('randombytes')
+// const randomBytes = require('randombytes')
 const bitcoin = require('bitcoinjs-lib')
 const bcrypto = bitcoin.crypto
-const bscript = bitcoin.script
-const baddress = bitcoin.address
+// const bscript = bitcoin.script
+// const baddress = bitcoin.address
 const hdNode = require('../fixtures/hdnode').hdNode
 const {
-  hashTimelockContract,
-  simpleHashlockContract,
-  simpleHashlockAddrContract,
-  simpleHashlockSigContract
+  hashTimelockContract
+  // simpleHashlockContract,
+  // simpleHashlockAddrContract,
+  // simpleHashlockSigContract
 } = require('../../src/script-builder')
 const { buildTx } = require('../../src/tx-builder-equibit')
 
