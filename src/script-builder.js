@@ -58,7 +58,7 @@ const simpleEqualContract = (value) => {
 const simpleHashlockAddrContract = (redeemerAddr, commitment) => {
   typeforce(types.tuple(
     types.Address,
-    types.String,
+    types.String
   ), [redeemerAddr, commitment])
 
   const redeemerHex = baddress.fromBase58Check(redeemerAddr).hash.toString('hex')
@@ -69,7 +69,7 @@ const simpleHashlockAddrContract = (redeemerAddr, commitment) => {
 const simpleHashlockSigContract = (redeemerAddr, commitment) => {
   typeforce(types.tuple(
     types.Address,
-    types.String,
+    types.String
   ), [redeemerAddr, commitment])
 
   const redeemerHex = baddress.fromBase58Check(redeemerAddr).hash.toString('hex')
