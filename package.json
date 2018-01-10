@@ -28,7 +28,7 @@
     "mocha": "^3.4.2",
     "nyc": "^11.3.0",
     "standard": "^10.0.3",
-    "tx-builder": "../tx-builder",
+    "tx-builder": "^0.13.1",
     "varuint-bitcoin": "^1.0.4"
   },
   "browserify": {
