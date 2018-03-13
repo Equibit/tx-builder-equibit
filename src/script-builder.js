@@ -2,7 +2,9 @@
  * This constructs different redeem scripts.
  */
 const typeforce = require('typeforce')
-const types = require('tx-builder/src/types')
+// todo: use types from tx-builder when it will be refactored (to not import script-builder, but accept it as a param).
+// const types = require('tx-builder/src/types')
+const types = require('./types')
 const randomBytes = require('randombytes')
 const bitcoin = require('bitcoinjs-lib')
 const scriptNumber = require('bitcoinjs-lib/src/script_number')
