@@ -1,3 +1,12 @@
+// Regular P2PKH script:
+// Unlocking script + Locking script
+// <signature> <public key> + "OP_DUP OP_HASH160  <address> OP_EQUALVERIFY OP_CHECKSIG"
+
+// HTLC:
+// Unlocking script + Locking script
+// <sig> <publicKey> <secret> 1 + <HTLC locking>
+// <sig> <publicKey> 0 + <HTLC locking>
+
 module.exports = {
   hashTimeLock: function (redeemerAddr, funderAddr, hashSecret, locktime) {
     // To unlock:
