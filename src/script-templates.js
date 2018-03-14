@@ -4,8 +4,8 @@
 
 // HTLC:
 // Unlocking script + Locking script
-// <sig> <publicKey> <secret> 1 + <HTLC locking>
-// <sig> <publicKey> 0 + <HTLC locking>
+// <sig> <publicKey> <secret> OP_TRUE + <HTLC locking>
+// <sig> <publicKey> OP_FALSE + <HTLC locking>
 
 module.exports = {
   hashTimeLock: function (redeemerAddr, funderAddr, hashSecret, locktime) {
