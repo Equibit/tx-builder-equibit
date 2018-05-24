@@ -15,9 +15,9 @@
  *    - payload, string
  */
 
-const bitcoin = require('bitcoinjs-lib')
 const Buffer = require('safe-buffer').Buffer
 const typeforce = require('typeforce')
+const types = require('tx-builder/src/types')
 
 const {
   // bufferUInt8,
@@ -54,20 +54,27 @@ const log = msg => obj => {
 /**
  * Main function to build Equibit transaction.
  * @param {Object} tx
+ * @param {Object} options
  * @return {Buffer}
+ *
+ * ```
+ * const txConfig = { version: 1, vin: [...]}
+ * const options = {
+ *    network: bitcoin.networks.testnet   // or `bitcoin.networks.bitcoin` for mainnet.
+ *    sha: 'SHA3'                         // ('SHA256' | 'SHA3' | Fn)
+ * }
+ * ```
  */
-// buildTx :: Tx -> Buffer
-const buildTx = tx => {
-  typeforce({
-    version: 'Number',
-    vin: 'Array',
-    vout: 'Array',
-    locktime: 'Number'
-  }, tx)
+// buildTx :: (Tx, Options) -> Buffer
+const buildTx = (tx, options) => {
+  options = options || {}
+  typeforce(types.TxConfig, tx)
+  typeforce(types.TxBuilderOptions, options)
+
   return compose([
     prop('version', bufferInt32),                   // 4 bytes
-    bufferInputs('vin', bufferInputEqb),               // 1-9 bytes (VarInt), Input counter; Variable, Inputs
-    prop('vout', mapConcatBuffers(bufferOutputEqb)),   // 1-9 bytes (VarInt), Output counter; Variable, Outputs
+    bufferInputs('vin', bufferInputEqb(options)),               // 1-9 bytes (VarInt), Input counter; Variable, Inputs
+    prop('vout', mapConcatBuffers(bufferOutputEqb(options))),   // 1-9 bytes (VarInt), Output counter; Variable, Outputs
     prop('locktime', bufferUInt32)                  // 4 bytes
   ])(tx, EMPTY_BUFFER)
 }
@@ -76,8 +83,8 @@ const buildTx = tx => {
  * Function bufferOutputEqb is the main that implements equibit transaction structure difference.
  * @param vout
  */
-// bufferOutputEqb :: Object -> Buffer
-const bufferOutputEqb = vout => {
+// bufferOutputEqb :: Options -> (Object -> Buffer)
+const bufferOutputEqb = options => vout => {
   typeforce({
     value: 'Number',
     address: typeforce.maybe('String'),
@@ -89,7 +96,7 @@ const bufferOutputEqb = vout => {
       hasNo('scriptPubKey'),
       addProp(
         'scriptPubKey',
-        prop('address', voutScript(bitcoin.networks.testnet))
+        prop('address', voutScript(options))
       )
     ),
     prop('scriptPubKey', bufferVarSlice('hex')),  // 1-9 bytes (VarInt), Locking-Script Size; Variable, Locking-Script
@@ -115,8 +122,8 @@ const buildEquibitData = equbitData => {
 }
 
 // Prepare reusable functions:
-const buildTxCopyEqb = makeBuildTxCopy(bufferOutputEqb)
-const bufferInputEqb = makeBufferInput(buildTxCopyEqb)
+const buildTxCopyEqb = options => makeBuildTxCopy(bufferOutputEqb(options))
+const bufferInputEqb = options => makeBufferInput(buildTxCopyEqb(options), options)
 
 module.exports = {
   buildTx,

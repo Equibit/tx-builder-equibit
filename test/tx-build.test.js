@@ -15,6 +15,8 @@ const fixtureNode = require('./fixtures/hdnode')
 const scriptBuilder = require('../src/script-builder')
 const fixtureHtlc = require('./fixtures/tx-htlc')
 
+const { hashTimelockContract } = scriptBuilder
+
 describe('tx-build-equibit', function () {
   const keyPair = fixtureNode.keyPair
   fixture.tx.vin[0].keyPair = keyPair
@@ -35,11 +37,11 @@ describe('tx-build-equibit', function () {
   })
   describe('bufferOutputEqb', function () {
     it('should build vout-0 buffer', function () {
-      const buffer = bufferOutputEqb(fixture.tx.vout[0])
+      const buffer = bufferOutputEqb({})(fixture.tx.vout[0])
       assert.equal(buffer.toString('hex'), fixture.hexItems.vout[0].hex)
     })
     it('should build vout-1 buffer', function () {
-      const buffer = bufferOutputEqb(fixture.tx.vout[1])
+      const buffer = bufferOutputEqb({})(fixture.tx.vout[1])
       assert.equal(buffer.toString('hex'), fixture.hexItems.vout[1].hex)
     })
   })
@@ -47,7 +49,7 @@ describe('tx-build-equibit', function () {
   describe('vinScript', function () {
     const keyPair = fixtureNode.keyPair
     it('should create vin script', function () {
-      const script = vinScript(buildTxCopyEqb)(fixture.tx, 0)(keyPair)
+      const script = vinScript(buildTxCopyEqb({}), { hashTimelockContract })(fixture.tx, 0)(keyPair)
       assert.equal(script.toString('hex'), fixture.decoded.vin[0].scriptSig.hex)
     })
   })
@@ -58,28 +60,28 @@ describe('tx-build-equibit', function () {
       const txVin = Object.assign({}, fixture.tx.vin[0], {
         keyPair
       })
-      const buffer = bufferInputEqb(fixture.tx)(txVin, 0)
+      const buffer = bufferInputEqb({})(fixture.tx)(txVin, 0)
       assert.equal(buffer.toString('hex'), fixture.hexItems.vin[0].hex)
     })
   })
 
   describe('bufferInputs', function () {
     it('should process vins', function () {
-      const buffer = bufferInputs('vin', bufferInputEqb)(fixture.tx)
+      const buffer = bufferInputs('vin', bufferInputEqb({}))(fixture.tx)
       assert.equal(buffer.toString('hex'), '03' + fixture.hexItems.vin[0].hex + fixture.hexItems.vin[1].hex + fixture.hexItems.vin[2].hex)
     })
   })
 
   describe('buildTx', function () {
     it('should build an empty eqb transaction', function () {
-      const buffer = buildTx(fixture.tx)
+      const buffer = buildTx(fixture.tx, {})
       assert.equal(buffer.toString('hex'), fixture.hex)
     })
     it('should build an issuance transaction', function () {
       const fixture = require('./fixtures/tx-hex-issuance')[0]
       const tx = fixture.tx
       tx.vin.forEach(vin => { vin.keyPair = fixtureNode.keyPair })
-      const buffer = buildTx(tx)
+      const buffer = buildTx(tx, {})
       assert.equal(buffer.toString('hex'), fixture.hex)
     })
   })
