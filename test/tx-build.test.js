@@ -1,4 +1,5 @@
 // const varuint = require('varuint-bitcoin')
+const bitcoin = require('bitcoinjs-lib')
 const assert = require('assert')
 const {
   buildTx,
@@ -11,6 +12,7 @@ const {
 } = require('../src/tx-builder-equibit')
 const fixtures = require('./fixtures/tx-hex')
 const fixture = fixtures[0]
+const fixturesSha3 = require('./fixtures/tx-sha3')
 const fixtureNode = require('./fixtures/hdnode')
 const scriptBuilder = require('../src/script-builder')
 const fixtureHtlc = require('./fixtures/tx-htlc')
@@ -100,6 +102,22 @@ describe('tx-build-equibit', function () {
       const buffer = buildTx(tx)
       // console.log(`htlc buffer tx = ${buffer.toString('hex')}`)
       assert.equal(buffer.toString('hex'), fixtureHtlc.hex)
+    })
+  })
+
+  describe('SHA3', function () {
+    let buffer
+
+    before(function () {
+      const ecPair = bitcoin.ECPair.fromWIF(fixturesSha3[1].privKey, bitcoin.networks.testnet)
+      console.log('ecPair::', ecPair)
+      fixturesSha3[1].tx.vin.forEach(vin => { vin.keyPair = ecPair })
+      buffer = buildTx(fixturesSha3[1].tx, {sha: 'SHA3_256'})
+    })
+
+    it('should build transaction using SHA3', function () {
+      console.log(`built buffer=${buffer.toString('hex')}`)
+      assert.equal(buffer.toString('hex'), fixturesSha3[1].hex)
     })
   })
 })

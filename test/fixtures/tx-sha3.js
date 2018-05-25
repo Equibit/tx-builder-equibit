@@ -135,8 +135,36 @@ module.exports = [{
       }
     ]
   },
-  fromAddress: '',
-  privKey: '',
-  tx: {},
+  fromAddress: 'mgyFAKifcUPfmkY25LfLb8ckaNMP8JuvBL',
+  privKey: 'cUtqnMnPdFJeg6fXknCH5XcHNqNz9amAYXDAD6S1XYehUiaVqJs3',
+  tx: {
+    version: 2,
+    locktime: 101,
+    vin: [{
+      txid: '0252e23e5efbab816e2c7515246a470f7bdffdc373a9cf885180818697e7a119',
+      vout: 0,
+      script: '',
+      sequence: 4294967294
+    }],
+    vout: [{
+      value: 1310255.22221466 * 100000000,
+      address: 'mxZs8wiVXSD6myyRhLuLauyh8X8GFmbaLK',
+      equibit: {
+        payment_currency: 0,
+        payment_tx_id: '',
+        issuance_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
+        issuance_json: ''
+      }
+    }, {
+      value: 2.5 * 100000000,
+      address: 'mgyFAKifcUPfmkY25LfLb8ckaNMP8JuvBL',
+      equibit: {
+        payment_currency: 0,
+        payment_tx_id: '',
+        issuance_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
+        issuance_json: ''
+      }
+    }]
+  },
   hexItems: {}
 }]

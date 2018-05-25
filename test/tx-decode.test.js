@@ -140,4 +140,20 @@ describe('Decode hex', function () {
       assert.equal(decoded[0].vout[0].equibit.issuance_json.toString('ascii'), fixture.decoded.vout[0].equibit.issuance_json)
     })
   })
+
+  describe('decodeTx SHA3', function () {
+    it('should decode sha3 tx', function () {
+      const fixture = require('./fixtures/tx-sha3')[1]
+      const hex = fixture.hex
+      const buffer = Buffer.from(hex, 'hex')
+      let decoded
+      try {
+        decoded = decodeTx(buffer)
+      } catch (e) {
+        console.log(e)
+      }
+      console.log(`decodeTx SHA3:::`, decoded[0])
+      assert.equal(decoded[0].vout[0].equibit.issuance_json.toString('ascii'), fixture.decoded.vout[0].equibit.issuance_json)
+    })
+  })
 })
