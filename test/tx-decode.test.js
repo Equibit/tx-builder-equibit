@@ -143,7 +143,7 @@ describe('Decode hex', function () {
 
   describe('decodeTx SHA3', function () {
     it('should decode sha3 tx', function () {
-      const fixture = require('./fixtures/tx-sha3')[1]
+      const fixture = require('./fixtures/tx-sha3')[0]
       const hex = fixture.hex
       const buffer = Buffer.from(hex, 'hex')
       let decoded
