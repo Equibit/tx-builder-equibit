@@ -2380,9 +2380,9 @@ tryit@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/tryit/-/tryit-1.0.3.tgz#393be730a9446fd1ead6da59a014308f36c289cb"
 
-tx-builder@^0.14.3:
-  version "0.14.3"
-  resolved "https://registry.yarnpkg.com/tx-builder/-/tx-builder-0.14.3.tgz#cfee7dcd8392527e5ac733a3cd3fd7435f350e35"
+tx-builder@^0.14.4:
+  version "0.14.4"
+  resolved "https://registry.yarnpkg.com/tx-builder/-/tx-builder-0.14.4.tgz#a64c3fe28141c432c74aa1d700eeb89be8c4d2ec"
   dependencies:
     bip39 "^2.3.1"
     bitcoinjs-lib "^3.1.1"

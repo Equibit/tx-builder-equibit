@@ -133,4 +133,75 @@ module.exports = [{
       }
     }]
   }
+}, {
+  title: 'SHA3 - HTLC UNlocking transaction',
+  secret: '56c44dc6ac176bb534679a8e4b6979b1',
+  secretHash: '7c4222070fe4f287b70f12561fe93e703153d34cbc35bc3210ddd4eed609b077',
+  hex: '0200000001558a838c470955efb0598819e91c8bf1a1a636ab4003381c41d96bb529baed27000000007c47304402207363b55bc914a9e3b6643a3464cce055dd7e07a11b91b0c61baa5fe7886085c902201e63132df64d648be12ea50f650883a469dfec9438df46c76396dd0ab4ee59d80121028ef4f2028a6446bad7daefca6004eb8b13c1a9a0e88257e3a878becac24bb5221056c44dc6ac176bb534679a8e4b6979b151feffffff018c374012000000001976a914bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab88ac000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+  decoded: {
+    'txid': '7cbf0b9ee390b580f5b008da18453735ae7a6ee3ba2619a9beacd2b6374b6475',
+    'hash': '7cbf0b9ee390b580f5b008da18453735ae7a6ee3ba2619a9beacd2b6374b6475',
+    'size': 247,
+    'vsize': 247,
+    'version': 2,
+    'locktime': 0,
+    'vin': [
+      {
+        'txid': '27edba29b56bd9411c380340ab36a6a1f18b1ce9198859b0ef5509478c838a55',
+        'vout': 0,
+        'scriptSig': {
+          'asm': '304402207363b55bc914a9e3b6643a3464cce055dd7e07a11b91b0c61baa5fe7886085c902201e63132df64d648be12ea50f650883a469dfec9438df46c76396dd0ab4ee59d8[ALL] 028ef4f2028a6446bad7daefca6004eb8b13c1a9a0e88257e3a878becac24bb522 56c44dc6ac176bb534679a8e4b6979b1 1',
+          'hex': '47304402207363b55bc914a9e3b6643a3464cce055dd7e07a11b91b0c61baa5fe7886085c902201e63132df64d648be12ea50f650883a469dfec9438df46c76396dd0ab4ee59d80121028ef4f2028a6446bad7daefca6004eb8b13c1a9a0e88257e3a878becac24bb5221056c44dc6ac176bb534679a8e4b6979b151'
+        },
+        'sequence': 4294967294
+      }
+    ],
+    'vout': [
+      {
+        'value': 3.06198412,
+        'n': 0,
+        'scriptPubKey': {
+          'asm': 'OP_DUP OP_HASH160 bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab OP_EQUALVERIFY OP_CHECKSIG',
+          'hex': '76a914bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab88ac',
+          'reqSigs': 1,
+          'type': 'pubkeyhash',
+          'addresses': [
+            'mxk5zYRwVWDAwgKYaAadDeiCjY67ACAHLt'
+          ]
+        },
+        'equibit': {
+          'payment_currency': 0,
+          'payment_tx_id': '',
+          'issuance_tx_id': '0000000000000000000000000000000000000000000000000000000000000000',
+          'issuance_json': ''
+        }
+      }
+    ]
+  },
+  tx: {
+    version: 2,
+    locktime: 0,
+    vin: [{
+      txid: '27edba29b56bd9411c380340ab36a6a1f18b1ce9198859b0ef5509478c838a55',
+      vout: 0,
+      script: '',
+      sequence: 4294967294,
+      htlc: {
+        secret: '56c44dc6ac176bb534679a8e4b6979b1',
+        receiverAddr: 'mxk5zYRwVWDAwgKYaAadDeiCjY67ACAHLt', // #1
+        refundAddr: 'mm2zdwmiVBR7ipNiN3tr4CCu6sS5tFwKna',   // #0
+        timelock: 32
+      }
+    }],
+    vout: [{
+      value: 3.06198412 * 100000000,
+      address: 'mxk5zYRwVWDAwgKYaAadDeiCjY67ACAHLt',
+      equibit: {
+        payment_currency: 0,
+        payment_tx_id: '',
+        issuance_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
+        issuance_json: ''
+      }
+    }]
+  }
 }]

@@ -152,7 +152,7 @@ describe('Decode hex', function () {
       } catch (e) {
         console.log(e)
       }
-      console.log(`decodeTx SHA3:::`, decoded[0])
+      // console.log(`decodeTx SHA3:::`, decoded[0])
       assert.equal(decoded[0].vout[0].equibit.issuance_json.toString('ascii'), fixture.decoded.vout[0].equibit.issuance_json)
     })
   })
