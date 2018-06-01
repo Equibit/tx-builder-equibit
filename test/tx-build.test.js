@@ -106,7 +106,7 @@ describe('tx-build-equibit', function () {
   })
 
   describe('SHA3', function () {
-    describe('P2PKH transaction', function () {
+    describe('P2PKH transaction (SHA3)', function () {
       let buffer
       const fixture = fixturesSha3[0]
       const options = {sha: 'SHA3_256'}
@@ -119,6 +119,26 @@ describe('tx-build-equibit', function () {
         const txid = decoder.getTxId(options)(buffer)
         console.log(`\ntxid for  ${options.sha} = ${txid}\n`)
         assert(txid, fixture.txid)
+        assert.equal(buffer.toString('hex'), fixture.hex)
+      })
+    })
+
+    describe('HTLC transaction (SHA3)', function () {
+      // const secretPair = scriptBuilder.generateSecret(16)
+      // const secretHash = secretPair.hash.toString('hex')
+      const fixture = fixturesSha3[1]
+      const secretHash = fixture.secretHash
+      const tx = fixture.tx
+      const options = {sha: 'SHA3_256'}
+      tx.vin[0].keyPair = keyPair
+      it('should build a valid transaction with HTLC locking script (SHA3)', function () {
+        console.log(`scriptBuilder.hashTimelockContract`, tx.vout[0].receiverAddr, tx.vout[0].refundAddr, secretHash, tx.vout[0].locktime)
+        const htlcScript = scriptBuilder.hashTimelockContract(tx.vout[0].receiverAddr, tx.vout[0].refundAddr, secretHash, tx.vout[0].locktime)
+        console.log(`htlcScript ${htlcScript.length} = ${htlcScript.toString('hex')}`)
+        assert.equal(htlcScript.length, 90)
+        tx.vout[0].scriptPubKey = htlcScript
+        const buffer = buildTx(tx, options)
+        // console.log(`htlc buffer tx = ${buffer.toString('hex')}`)
         assert.equal(buffer.toString('hex'), fixture.hex)
       })
     })
