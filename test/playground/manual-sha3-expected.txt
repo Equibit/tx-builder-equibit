@@ -1,0 +1,35 @@
+// EXPECTED:
+
+* version = 2, offset=0, length=4
+* vinLen = 1, offset=4, length=1
+--- VIN-0 ---
+* txid = 0252e23e5efbab816e2c7515246a470f7bdffdc373a9cf885180818697e7a119, offset=5, length=32
+* vout index = 0, offset=37, length=4
+* scriptLen = 72, offset=41, length=1
+* script = 4730440220018e05a5e2415496b93f5d4d1d928e3f4836280e7cecf9660ca2d9cecaa6879202200187aa4ec83a2df5cf459a833be342c8926ba65b2448cb0871d9b68e051bdaa101, offset=42, length=72
+* sequence = 4294967294, offset=114, length=4, hex=feffffff
+* voutLen = 2, offset=118, length=1
+--- VOUT-0 ---
+* value = 131025522221466, offset=119, length=8
+** value buffer: 9a61b5c12a770000
+* lockingScriptLen = 25, offset=127, length=1
+* lockingScript = 76a914bb0714d092afe38cca611791aaf076aba6aebc3788ac, offset=128, length=25
+* equibit.payment_currency = 0, offset=153, length=4
+* equibit.paymentTxIdLength = 0, offset=157, length=1
+* equibit.payment_tx_id = , offset=158, length=0
+* equibit.issuance_tx_id = 0000000000000000000000000000000000000000000000000000000000000000, offset=158, length=32
+* equibit.payloadLength = 0, offset=190, length=1
+* equibit.issuance_json = , offset=191, length=0
+--- VOUT-1 ---
+* value = 250000000, offset=191, length=8
+** value buffer: 80b2e60e00000000
+* lockingScriptLen = 25, offset=199, length=1
+* lockingScript = 76a9140ff10539f75cb64a18f7283adb6ffa5ed8537f9888ac, offset=200, length=25
+* equibit.payment_currency = 0, offset=225, length=4
+* equibit.paymentTxIdLength = 0, offset=229, length=1
+* equibit.payment_tx_id = , offset=230, length=0
+* equibit.issuance_tx_id = 0000000000000000000000000000000000000000000000000000000000000000, offset=230, length=32
+* equibit.payloadLength = 0, offset=262, length=1
+* equibit.issuance_json = , offset=263, length=0
+* locktime = 101, offset=263, length=4
+BUFFER LEFT length = 0,

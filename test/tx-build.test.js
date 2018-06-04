@@ -1,4 +1,5 @@
 // const varuint = require('varuint-bitcoin')
+const decoder = require('tx-builder').decoder
 const assert = require('assert')
 const {
   buildTx,
@@ -11,6 +12,7 @@ const {
 } = require('../src/tx-builder-equibit')
 const fixtures = require('./fixtures/tx-hex')
 const fixture = fixtures[0]
+const fixturesSha3 = require('./fixtures/tx-sha3')
 const fixtureNode = require('./fixtures/hdnode')
 const scriptBuilder = require('../src/script-builder')
 const fixtureHtlc = require('./fixtures/tx-htlc')
@@ -19,6 +21,7 @@ const { hashTimelockContract } = scriptBuilder
 
 describe('tx-build-equibit', function () {
   const keyPair = fixtureNode.keyPair
+  const keyPair1 = fixtureNode.keyPair1
   fixture.tx.vin[0].keyPair = keyPair
   fixture.tx.vin[1].keyPair = keyPair
   fixture.tx.vin[2].keyPair = keyPair
@@ -100,6 +103,58 @@ describe('tx-build-equibit', function () {
       const buffer = buildTx(tx)
       // console.log(`htlc buffer tx = ${buffer.toString('hex')}`)
       assert.equal(buffer.toString('hex'), fixtureHtlc.hex)
+    })
+  })
+
+  describe('SHA3', function () {
+    describe('P2PKH transaction (SHA3)', function () {
+      let buffer
+      const fixture = fixturesSha3[0]
+      const options = {sha: 'SHA3_256'}
+      before(function () {
+        fixture.tx.vin.forEach(vin => { vin.keyPair = keyPair })
+        buffer = buildTx(fixture.tx, options)
+      })
+      it('should build transaction using SHA3 ' + fixture.title, function () {
+        // console.log(`\nbuilt buffer for ${options.sha} = ${buffer.toString('hex')}\n`)
+        const txid = decoder.getTxId(options)(buffer)
+        // console.log(`\ntxid for  ${options.sha} = ${txid}\n`)
+        assert(txid, fixture.txid)
+        assert.equal(buffer.toString('hex'), fixture.hex)
+      })
+    })
+
+    describe('HTLC transaction (SHA3)', function () {
+      const fixture = fixturesSha3[1]
+      const secretHash = fixture.secretHash
+      const tx = fixture.tx
+      const options = {sha: 'SHA3_256'}
+      tx.vin[0].keyPair = keyPair
+      it('should build a valid transaction with HTLC locking script (SHA3)', function () {
+        // console.log(`scriptBuilder.hashTimelockContract`, tx.vout[0].receiverAddr, tx.vout[0].refundAddr, secretHash, tx.vout[0].locktime)
+        const htlcScript = scriptBuilder.hashTimelockContract(tx.vout[0].receiverAddr, tx.vout[0].refundAddr, secretHash, tx.vout[0].locktime)
+        // console.log(`htlcScript ${htlcScript.length} = ${htlcScript.toString('hex')}`)
+        assert.equal(htlcScript.length, 90)
+        tx.vout[0].scriptPubKey = htlcScript
+        const buffer = buildTx(tx, options)
+        // console.log(`htlc buffer tx = ${buffer.toString('hex')}`)
+        assert.equal(buffer.toString('hex'), fixture.hex)
+      })
+    })
+
+    describe('HTLC spending transaction (SHA3)', function () {
+      const fixture = fixturesSha3[2]
+      const tx = fixture.tx
+      const options = {
+        sha: 'SHA3_256',
+        hashTimelockContract: scriptBuilder.hashTimelockContract
+      }
+      tx.vin[0].keyPair = keyPair1
+      it('should build a valid transaction with HTLC unlocking script (SHA3)', function () {
+        const buffer = buildTx(tx, options)
+        // console.log(`htlc buffer tx = ${buffer.toString('hex')}`)
+        assert.equal(buffer.toString('hex'), fixture.hex)
+      })
     })
   })
 })

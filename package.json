@@ -1,6 +1,6 @@
 {
   "name": "tx-builder-equibit",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "Equibit blockchain transaction builder and decoder",
   "main": "index.js",
   "repository": "https://github.com/Equibit/tx-decoder.git",
@@ -28,7 +28,7 @@
     "mocha": "^3.4.2",
     "nyc": "^11.3.0",
     "standard": "^10.0.3",
-    "tx-builder": "^0.14.1",
+    "tx-builder": "^0.15.0",
     "varuint-bitcoin": "^1.0.4"
   },
   "browserify": {
