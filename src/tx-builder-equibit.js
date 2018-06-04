@@ -43,6 +43,7 @@ const {
   vinScript,
   voutScript
 } = require('tx-builder/src/tx-builder')
+const hashTimelockContract = require('./script-builder').hashTimelockContract
 
 const EMPTY_BUFFER = Buffer.allocUnsafe(0)
 
@@ -67,7 +68,7 @@ const log = msg => obj => {
  */
 // buildTx :: (Tx, Options) -> Buffer
 const buildTx = (tx, options) => {
-  options = options || {}
+  options = Object.assign({ hashTimelockContract }, options)
   typeforce(types.TxConfig, tx)
   typeforce(types.TxBuilderOptions, options)
 
