@@ -1,4 +1,5 @@
 const Buffer = require('safe-buffer').Buffer
+const { getAddress } = require('tx-builder/src/utils')
 // const randomBytes = require('randombytes')
 const bitcoin = require('bitcoinjs-lib')
 const bcrypto = bitcoin.crypto
@@ -15,8 +16,10 @@ const { buildTx } = require('../../src/tx-builder-equibit')
 
 const node0 = hdNode.derive(0)
 const node1 = hdNode.derive(1)
-const addr0 = node0.getAddress()                        // moFbsgEQZMCzRNMftrp6hst8iqrxmqEuf4,
-const addr1 = node1.getAddress()                        // mzWJ35ui9iizfTiypu8Aq7oWPb6gWbRvTe
+const addr0 = getAddress(node0.publicKey, bitcoin.networks.testnet).address // moFbsgEQZMCzRNMftrp6hst8iqrxmqEuf4
+const addr1 = getAddress(node1.publicKey, bitcoin.networks.testnet).address // mzWJ35ui9iizfTiypu8Aq7oWPb6gWbRvTe
+const keyPair0 = bitcoin.ECPair.fromPrivateKey(node0.privateKey)
+const keyPair1 = bitcoin.ECPair.fromPrivateKey(node1.privateKey)
 console.log(`addr0 = ${addr0}, addr1 = ${addr1}`)
 
 // const secretBuffer = randomBytes(32)
@@ -50,7 +53,7 @@ const txConfig = {
   vin: [{
     txid: 'e2efad46d8052c34fe986882c5c6f933163ff9bd55ba3882d06dbaa554693b16',
     vout: 0,
-    keyPair: node0.keyPair,
+    keyPair: keyPair0,
     sequence: 4294967294
   }],
   vout: [{
@@ -79,7 +82,7 @@ const txConfigSpend = {
       timelock: 144
     },
     refundAddr: addr0,
-    keyPair: node1.keyPair,
+    keyPair: keyPair1,
     sequence: 4294967294
   }],
   vout: [{
