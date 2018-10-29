@@ -3,7 +3,7 @@ const decoder = require('tx-builder').decoder
 const assert = require('assert')
 const {
   buildTx,
-  // buildEquibitData,
+  buildEquibitData,
   bufferOutputEqb,
   bufferInputEqb,
   bufferInputs,
@@ -26,18 +26,18 @@ describe('tx-build-equibit', function () {
   fixture.tx.vin[1].keyPair = keyPair
   fixture.tx.vin[2].keyPair = keyPair
 
-  // describe('buildEquibitData', function () {
-  //   it('should create a buffer with empty equibit data', function () {
-  //     const obj = fixture.tx.vout[0].equibit
-  //     const equibitData = fixture.hexItems.vout[0].equibit.hex
-  //     assert.equal(buildEquibitData(obj).toString('hex'), equibitData)
-  //   })
-  //   it('should create a buffer with equibit data', function () {
-  //     const obj = fixture.tx.vout[1].equibit
-  //     const equibitData = fixture.hexItems.vout[1].equibit.hex
-  //     assert.equal(buildEquibitData(obj).toString('hex'), equibitData)
-  //   })
-  // })
+  describe.skip('buildEquibitData', function () {
+    it('should create a buffer with empty equibit data', function () {
+      const obj = fixture.tx.vout[0].equibit
+      const equibitData = fixture.hexItems.vout[0].equibit.hex
+      assert.equal(buildEquibitData(obj).toString('hex'), equibitData)
+    })
+    it('should create a buffer with equibit data', function () {
+      const obj = fixture.tx.vout[1].equibit
+      const equibitData = fixture.hexItems.vout[1].equibit.hex
+      assert.equal(buildEquibitData(obj).toString('hex'), equibitData)
+    })
+  })
   describe('bufferOutputEqb', function () {
     it('should build vout-0 buffer', function () {
       const buffer = bufferOutputEqb({})(fixture.tx.vout[0])
