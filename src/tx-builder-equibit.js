@@ -88,8 +88,8 @@ const buildTx = (tx, options) => {
 const bufferOutputEqb = options => vout => {
   typeforce({
     value: 'Number',
-    address: typeforce.maybe('String'),
-    equibit: 'Object'
+    address: typeforce.maybe('String')
+    // equibit: 'Object'
   }, vout)
   return compose([
     prop('value', bufferUInt64),                  // 8 bytes, Amount in satoshis
@@ -100,8 +100,8 @@ const bufferOutputEqb = options => vout => {
         prop('address', voutScript(options))
       )
     ),
-    prop('scriptPubKey', bufferVarSlice('hex')),  // 1-9 bytes (VarInt), Locking-Script Size; Variable, Locking-Script
-    prop('equibit', buildEquibitData)
+    prop('scriptPubKey', bufferVarSlice('hex'))  // 1-9 bytes (VarInt), Locking-Script Size; Variable, Locking-Script
+    // prop('equibit', buildEquibitData)
   ])(vout, EMPTY_BUFFER)
 }
 

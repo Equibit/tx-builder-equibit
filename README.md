@@ -19,13 +19,13 @@ https://github.com/Equibit/tx-builder-equibit/blob/master/test/fixtures/tx-sha3.
 	    }],
 	    vout: [{
 	      value: (3.0597367 - 0.00001) * 100000000,
-	      address: 'mxk5zYRwVWDAwgKYaAadDeiCjY67ACAHLt',
-	      equibit: {
-	        payment_currency: 0,
-	        payment_tx_id: '',
-	        issuance_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
-	        issuance_json: ''
-	      }
+	      address: 'mxk5zYRwVWDAwgKYaAadDeiCjY67ACAHLt'
+	      // equibit: {
+	      //   payment_currency: 0,
+	      //   payment_tx_id: '',
+	      //   issuance_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
+	      //   issuance_json: ''
+	      // }
 	    }]
 	  }
 ```

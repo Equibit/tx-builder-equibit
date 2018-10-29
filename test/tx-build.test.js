@@ -26,7 +26,7 @@ describe('tx-build-equibit', function () {
   fixture.tx.vin[1].keyPair = keyPair
   fixture.tx.vin[2].keyPair = keyPair
 
-  describe('buildEquibitData', function () {
+  describe.skip('buildEquibitData', function () {
     it('should create a buffer with empty equibit data', function () {
       const obj = fixture.tx.vout[0].equibit
       const equibitData = fixture.hexItems.vout[0].equibit.hex
