@@ -30,13 +30,13 @@ module.exports = {
           'asm': 'OP_IF OP_SHA256 7c4222070fe4f287b70f12561fe93e703153d34cbc35bc3210ddd4eed609b077 OP_EQUALVERIFY OP_DUP OP_HASH160 3c8710460fc63d27e6741dd1927f0ece41e9b555 OP_ELSE 32 OP_CHECKLOCKTIMEVERIFY OP_DROP OP_DUP OP_HASH160 bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab OP_ENDIF OP_EQUALVERIFY OP_CHECKSIG',
           'hex': '63a8207c4222070fe4f287b70f12561fe93e703153d34cbc35bc3210ddd4eed609b0778876a9143c8710460fc63d27e6741dd1927f0ece41e9b555670120b17576a914bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab6888ac',
           'type': 'nonstandard'
-        },
-        'equibit': {
-          'payment_currency': 0,
-          'payment_tx_id': '',
-          'issuance_tx_id': '0000000000000000000000000000000000000000000000000000000000000000',
-          'issuance_json': ''
         }
+        // 'equibit': {
+        //   'payment_currency': 0,
+        //   'payment_tx_id': '',
+        //   'issuance_tx_id': '0000000000000000000000000000000000000000000000000000000000000000',
+        //   'issuance_json': ''
+        // }
       }
     ]
   },
@@ -54,13 +54,13 @@ module.exports = {
       hashSecret: '',
       receiverAddr: 'mm2zdwmiVBR7ipNiN3tr4CCu6sS5tFwKna', // #0
       refundAddr: 'mxk5zYRwVWDAwgKYaAadDeiCjY67ACAHLt',   // #1
-      locktime: 32,
-      equibit: {
-        payment_currency: 0,
-        payment_tx_id: '',
-        issuance_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
-        issuance_json: ''
-      }
+      locktime: 32
+      // equibit: {
+      //   payment_currency: 0,
+      //   payment_tx_id: '',
+      //   issuance_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
+      //   issuance_json: ''
+      // }
     }]
   },
   hexItems: {}

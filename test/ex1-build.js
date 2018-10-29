@@ -18,22 +18,22 @@ const tx = {
   }],
   vout: [{
     value: 1 * 100000000,
-    address: 'mxk5zYRwVWDAwgKYaAadDeiCjY67ACAHLt',
-    equibit: {
-      payment_currency: 0,
-      payment_tx_id: '',
-      issuance_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
-      payload: ''
-    }
+    address: 'mxk5zYRwVWDAwgKYaAadDeiCjY67ACAHLt'
+    // equibit: {
+    //   payment_currency: 0,
+    //   payment_tx_id: '',
+    //   issuance_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
+    //   payload: ''
+    // }
   }, {
     value: (25 - 1 - 0.0001) * 100000000,
-    address: 'mm2zdwmiVBR7ipNiN3tr4CCu6sS5tFwKna',
-    equibit: {
-      payment_currency: 0,
-      payment_tx_id: '',
-      issuance_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
-      payload: ''
-    }
+    address: 'mm2zdwmiVBR7ipNiN3tr4CCu6sS5tFwKna'
+    // equibit: {
+    //   payment_currency: 0,
+    //   payment_tx_id: '',
+    //   issuance_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
+    //   payload: ''
+    // }
   }]
 }
 
