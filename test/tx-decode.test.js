@@ -95,26 +95,26 @@ describe('Decode hex', function () {
     it('should leave some buffer', function () {
       assert.ok(bufferLeft.length)
     })
-    describe('equibit data', function () {
-      it('should read payment_currency', function () {
-        assert.equal(res[0].equibit.payment_currency, fixture.decoded.vout[0].equibit.payment_currency)
-      })
-      it('should read payment_tx_id', function () {
-        assert.equal(res[0].equibit.payment_tx_id, fixture.decoded.vout[0].equibit.payment_tx_id)
-      })
-      it('should read payload (empty string)', function () {
-        assert.equal(res[0].equibit.issuance_json.toString('hex'), fixture.decoded.vout[0].equibit.issuance_json)
-      })
-      it('should read payment_currency', function () {
-        assert.equal(res[1].equibit.payment_currency, fixture.decoded.vout[1].equibit.payment_currency)
-      })
-      it('should read payment_tx_id', function () {
-        assert.equal(res[1].equibit.payment_tx_id, fixture.decoded.vout[1].equibit.payment_tx_id)
-      })
-      it('should read payload (JSON string)', function () {
-        assert.equal(res[1].equibit.issuance_json.toString(), fixture.decoded.vout[1].equibit.issuance_json)
-      })
-    })
+    // describe('equibit data', function () {
+    //   it('should read payment_currency', function () {
+    //     assert.equal(res[0].equibit.payment_currency, fixture.decoded.vout[0].equibit.payment_currency)
+    //   })
+    //   it('should read payment_tx_id', function () {
+    //     assert.equal(res[0].equibit.payment_tx_id, fixture.decoded.vout[0].equibit.payment_tx_id)
+    //   })
+    //   it('should read payload (empty string)', function () {
+    //     assert.equal(res[0].equibit.issuance_json.toString('hex'), fixture.decoded.vout[0].equibit.issuance_json)
+    //   })
+    //   it('should read payment_currency', function () {
+    //     assert.equal(res[1].equibit.payment_currency, fixture.decoded.vout[1].equibit.payment_currency)
+    //   })
+    //   it('should read payment_tx_id', function () {
+    //     assert.equal(res[1].equibit.payment_tx_id, fixture.decoded.vout[1].equibit.payment_tx_id)
+    //   })
+    //   it('should read payload (JSON string)', function () {
+    //     assert.equal(res[1].equibit.issuance_json.toString(), fixture.decoded.vout[1].equibit.issuance_json)
+    //   })
+    // })
   })
 
   describe('decodeTx', function () {
@@ -127,7 +127,7 @@ describe('Decode hex', function () {
       }
       assert.equal(decoded[0].locktime, fixture.decoded.locktime)
     })
-    it('should decode issuance tx', function () {
+    xit('should decode issuance tx', function () {
       const fixture = require('./fixtures/tx-hex-issuance')[0]
       const hex = fixture.hex
       const buffer = Buffer.from(hex, 'hex')
@@ -142,7 +142,7 @@ describe('Decode hex', function () {
   })
 
   describe('decodeTx SHA3', function () {
-    it('should decode sha3 tx', function () {
+    xit('should decode sha3 tx', function () {
       const fixture = require('./fixtures/tx-sha3')[0]
       const hex = fixture.hex
       const buffer = Buffer.from(hex, 'hex')
