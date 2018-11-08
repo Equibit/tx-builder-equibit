@@ -9,7 +9,9 @@
   "scripts": {
     "test": "npm run lint && npm run mocha",
     "lint": "standard --fix",
-    "mocha": "nyc mocha -u tdd --timeout 999999 --colors test/test.js"
+    "mocha": "nyc mocha -u tdd --timeout 999999 --colors test/test.js",
+    "test-decode": "npm run lint && nyc mocha -u tdd --timeout 900000 --colors test/tx-decode.test.js",
+    "test-build": "npm run lint && nyc mocha -u tdd --timeout 900000 --colors test/tx-build.test.js"
   },
   "standard": {
     "env": [
@@ -28,7 +30,7 @@
     "mocha": "^5.2.0",
     "nyc": "^12.0.2",
     "standard": "^10.0.3",
-    "tx-builder": "^0.16.0",
+    "tx-builder": "^0.17.0",
     "varuint-bitcoin": "^1.0.4"
   },
   "browserify": {
