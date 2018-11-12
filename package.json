@@ -9,14 +9,20 @@
   "scripts": {
     "test": "npm run lint && npm run mocha",
     "lint": "standard --fix",
-    "mocha": "nyc mocha -u tdd --timeout 999999 --colors test/test.js"
+    "mocha": "nyc mocha -u tdd --timeout 999999 --colors test/test.js",
+    "only-test": "mocha --inspect-brk test/test.js"
   },
   "standard": {
     "env": [
       "mocha"
+    ],
+    "ignore": [
+      "**/generate-prefixes-base58.js"
     ]
   },
   "dependencies": {
+    "coinstring": "^2.3.0",
+    "js-sha3": "^0.8.0",
     "randombytes": "^2.0.5",
     "safe-buffer": "^5.1.1",
     "typeforce": "^1.11.7"
@@ -25,6 +31,7 @@
     "assert": "^1.4.1",
     "bitcoin-script": "^0.1.1",
     "bitcoinjs-lib": "^4.0.1",
+    "bs58check": "^2.1.2",
     "mocha": "^5.2.0",
     "nyc": "^12.0.2",
     "standard": "^10.0.3",

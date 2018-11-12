@@ -7,7 +7,7 @@ module.exports = {
       private: 0x0488ade4
     },
     pubKeyHash: 0x01b5d1,
-    scriptHash: 0x01b5fb,
+    scriptHash: 0x01b5fc,
     wif: 0x01b5ea
   },
   testnet: {
@@ -17,8 +17,8 @@ module.exports = {
       public: 0x043587cf,
       private: 0x04358394
     },
-    pubKeyHash: 0x035e53,
-    scriptHash: 0x035e88,
+    pubKeyHash: 0x035e5d,
+    scriptHash: 0x035e87,
     wif: 0x035e75
   }
 }
