@@ -28,7 +28,7 @@
     "mocha": "^5.2.0",
     "nyc": "^12.0.2",
     "standard": "^10.0.3",
-    "tx-builder": "https://github.com/eternali/tx-builder",
+    "tx-builder": "0.17.1",
     "varuint-bitcoin": "^1.0.4"
   },
   "browserify": {
