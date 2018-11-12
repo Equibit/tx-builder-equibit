@@ -1,13 +1,14 @@
 const assert = require('assert')
-const bitcoin = require('bitcoinjs-lib')
-const { getAddress } = require('tx-builder/src/utils')
+const { getEquibitAddress } = require('../src/utils')
+const eqbNetworks = require('../src/networks-equibit')
+
 const fixtureNode = require('./fixtures/hdnode')
 const scriptBuilder = require('../src/script-builder')
 
 const addrHdNode = fixtureNode.addrHdNode
 
 describe('script-builder', function () {
-  const { address } = getAddress(addrHdNode.publicKey, bitcoin.networks.testnet)
+  const address = getEquibitAddress(addrHdNode.publicKey, eqbNetworks.testnet)
   const secretPair = scriptBuilder.generateSecret(32)
 
   describe('hashTimelockContract', function () {
