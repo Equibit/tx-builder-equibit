@@ -9,20 +9,14 @@
   "scripts": {
     "test": "npm run lint && npm run mocha",
     "lint": "standard --fix",
-    "mocha": "nyc mocha -u tdd --timeout 999999 --colors test/test.js",
-    "only-test": "mocha --inspect-brk test/test.js"
+    "mocha": "nyc mocha -u tdd --timeout 999999 --colors test/test.js"
   },
   "standard": {
     "env": [
       "mocha"
-    ],
-    "ignore": [
-      "**/generate-prefixes-base58.js"
     ]
   },
   "dependencies": {
-    "coinstring": "^2.3.0",
-    "js-sha3": "^0.8.0",
     "randombytes": "^2.0.5",
     "safe-buffer": "^5.1.1",
     "typeforce": "^1.11.7"
