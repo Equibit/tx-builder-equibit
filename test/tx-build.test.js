@@ -129,7 +129,7 @@ describe('tx-build-equibit', function () {
     it('should build P2PKH transaction with SHA3', function () {
       const fixture = fixturesSha3[3]
       const tx = fixture.tx
-      tx.vin.forEach(vin => { vin.keyPair = keyPair })
+      tx.vin.forEach(vin => { vin.keyPair = fixtureNode.keyPair2 })
 
       const buffer = buildTx(fixture.tx, options)
       assert.equal(buffer.toString('hex'), fixture.hex)

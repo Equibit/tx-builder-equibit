@@ -1,6 +1,7 @@
 const bip39 = require('bip39')
 const bip32 = require('bip32')
 const bitcoin = require('bitcoinjs-lib')
+const Buffer = require('buffer').Buffer
 const { getAddress } = require('tx-builder/src/utils')
 
 const mnemonic = 'talent destroy radar dinosaur punch muscle swear diary mango unit gallery bus'
@@ -17,6 +18,7 @@ const addrHdNode1 = hdNode.derive(0).derive(1)
 const address1 = getAddress(addrHdNode1.publicKey, { network: bitcoin.networks.testnet }).address
 const keyPair1 = bitcoin.ECPair.fromPrivateKey(addrHdNode1.privateKey)
 
+const keyPair2 = bitcoin.ECPair.fromPrivateKey(Buffer.from('0000000000000000000000000000000000000000000000000000000000000003', 'hex'))
 // 0: mm2zdwmiVBR7ipNiN3tr4CCu6sS5tFwKna
 // 1: mxk5zYRwVWDAwgKYaAadDeiCjY67ACAHLt
 // 2: n1nXTT79FU2bwHTLXQkydzfT7biCxW4ZqE
@@ -31,5 +33,7 @@ module.exports = {
 
   addrHdNode1,
   address1,
-  keyPair1
+  keyPair1,
+
+  keyPair2
 }
