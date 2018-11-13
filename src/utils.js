@@ -10,11 +10,19 @@ const bs58check = require('bs58check')
 */
 function getEquibitAddress (publicKey, network) {
   network = network || eqbNetworks.testnet
-  let versionHex = ('000000' + (network.pubKeyHash).toString(16)).slice(-6)
+  let versionHex = convertDecToHexStr(network.pubKeyHash)
   let versionBufferHex = Buffer.from(versionHex, 'hex')
   let hashBufferHex = bitcoin.crypto.hash160(publicKey)
   let payload = Buffer.concat([versionBufferHex, hashBufferHex])
   return bs58check.encode(payload)
+}
+
+function convertDecToHexStr (inputDec) {
+  let hexStr = (inputDec).toString(16)
+  if (hexStr.length % 2 !== 0) {
+    hexStr = '0' + hexStr
+  }
+  return hexStr
 }
 
 module.exports = {
