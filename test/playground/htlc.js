@@ -1,9 +1,7 @@
 const Buffer = require('safe-buffer').Buffer
-const { getEquibitAddress } = require('../../src/utils')
-
+const { getAddress } = require('tx-builder/src/utils')
 // const randomBytes = require('randombytes')
 const bitcoin = require('bitcoinjs-lib')
-const eqbNetworks = require('./networks-equibit')
 const bcrypto = bitcoin.crypto
 // const bscript = bitcoin.script
 // const baddress = bitcoin.address
@@ -18,13 +16,8 @@ const { buildTx } = require('../../src/tx-builder-equibit')
 
 const node0 = hdNode.derive(0)
 const node1 = hdNode.derive(1)
-<<<<<<< HEAD
 const addr0 = getAddress(node0.publicKey, { network: bitcoin.networks.testnet }) // moFbsgEQZMCzRNMftrp6hst8iqrxmqEuf4
 const addr1 = getAddress(node1.publicKey, { network: bitcoin.networks.testnet }) // mzWJ35ui9iizfTiypu8Aq7oWPb6gWbRvTe
-=======
-const addr0 = getEquibitAddress(node0.publicKey, eqbNetworks.testnet)
-const addr1 = getEquibitAddress(node1.publicKey, eqbNetworks.testnet)
->>>>>>> modify network and prefixes across repo
 const keyPair0 = bitcoin.ECPair.fromPrivateKey(node0.privateKey)
 const keyPair1 = bitcoin.ECPair.fromPrivateKey(node1.privateKey)
 console.log(`addr0 = ${addr0}, addr1 = ${addr1}`)
