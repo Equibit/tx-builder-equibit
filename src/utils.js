@@ -2,12 +2,35 @@ const bitcoin = require('bitcoinjs-lib')
 const eqbNetworks = require('./networks-equibit')
 const bs58check = require('bs58check')
 
-/* bitcoin p2pkh file currently allows only a one-byte version prefix to be used by base58check encoding of the bit coin address (public key hash) if publioc key is provided as input;
-   however, the Equibit protocol has a three-byte version prefix to be
-   used by encoding publicKeyHash, scriptHash and WIF.
 
-   getEquibitAddress :: buffer, object -> String
-*/
+/**
+ * bitcoin-js lib works with a strict one-byte size version prefix to be used by base58check encoding of bitcoin public key hash;
+ * however, Equibit and other protocols may have a variable-length component structure (such as variable version prefix). 
+ * getEquibitAddress does the following:
+ *  - takes hash160 of (version prefix based on network input + public key input)
+ *  - passes the result to base58Check encoding
+ * @param {Buffer} publicKey public key provided as buffer of hex values
+ * @param {Object} network network configuration having information about the network such as prefix value for a public key hash on mainnet/testnet
+ * @return {String} base58Check encoded address 
+ *
+ * ```
+ *  const network = {  // object containing all network objects
+ *   type_of_netwpork: { // mainnet, testnet, equibit, bitcoin, etc.
+ *    messagePrefix: ..., // fields/values are optional
+ *    bech32: ...,      
+ *    bip32: {
+ *      public: ...,
+ *      private: ...
+ *    },
+ *    pubKeyHash: 0x035e5d, // pubKeyHash field/value need to be present as it is used by getEquibitAddress
+ *    scriptHash: ...,
+ *    wif: ...
+ *   },
+ *   { ... } // addtion network objects
+ *  }
+ * ```
+ */
+// getEquibitAddress :: (Buffer, Object) -> String
 function getEquibitAddress (publicKey, network) {
   network = network || eqbNetworks.testnet
   let versionHex = convertDecToHexStr(network.pubKeyHash)
@@ -17,6 +40,7 @@ function getEquibitAddress (publicKey, network) {
   return bs58check.encode(payload)
 }
 
+// getEquibitAddress :: Number -> String
 function convertDecToHexStr (inputDec) {
   let hexStr = (inputDec).toString(16)
   if (hexStr.length % 2 !== 0) {
