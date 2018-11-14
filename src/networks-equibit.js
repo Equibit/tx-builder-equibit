@@ -8,7 +8,8 @@ module.exports = {
     },
     pubKeyHash: 0x01b5d1,
     scriptHash: 0x01b5fc,
-    wif: 0x01b5ea
+    wif: 0x01b5d6,
+    wifCompressed: 0x01b5d6
   },
   testnet: {
     messagePrefix: '\x18Equibit Signed Message:\n',
@@ -19,6 +20,7 @@ module.exports = {
     },
     pubKeyHash: 0x035e5d,
     scriptHash: 0x035e87,
-    wif: 0x035e75
+    wif: 0x035ed6,
+    wifCompressed: 0x035ed6
   }
 }
