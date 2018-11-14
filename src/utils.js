@@ -39,7 +39,7 @@ function getEquibitAddress (publicKey, network) {
   return bs58check.encode(payload)
 }
 
-// getEquibitAddress :: Number -> String
+// convertDecToHexStr :: Number -> String
 function convertDecToHexStr (inputDec) {
   let hexStr = (inputDec).toString(16)
   if (hexStr.length % 2 !== 0) {
