@@ -66,7 +66,7 @@ const txConfig = {
     equibit: equibitData
   }]
 }
-const tx = buildTx(txConfig)
+const tx = buildTx(txConfig, {network: bitcoin.networks.testnet})
 console.log(`tx = ${tx.toString('hex')}`)
 
 // 2
@@ -91,5 +91,5 @@ const txConfigSpend = {
     equibit: equibitData
   }]
 }
-const txSpend = buildTx(txConfigSpend)
+const txSpend = buildTx(txConfigSpend, {network: bitcoin.networks.testnet})
 console.log(`txSpend = ${txSpend.toString('hex')}`)

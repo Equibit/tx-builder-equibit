@@ -40,9 +40,9 @@ const {
   makeBufferInput,
   makeBuildTxCopy,
   bufferHash,
-  vinScript,
-  voutScript
+  vinScript
 } = require('tx-builder/src/tx-builder')
+const { voutScriptEqb } = require('./utils')
 const hashTimelockContract = require('./script-builder').hashTimelockContract
 
 const EMPTY_BUFFER = Buffer.allocUnsafe(0)
@@ -97,7 +97,7 @@ const bufferOutputEqb = options => vout => {
       hasNo('scriptPubKey'),
       addProp(
         'scriptPubKey',
-        prop('address', voutScript(options))
+        prop('address', voutScriptEqb(options))
       )
     ),
     prop('scriptPubKey', bufferVarSlice('hex'))  // 1-9 bytes (VarInt), Locking-Script Size; Variable, Locking-Script
