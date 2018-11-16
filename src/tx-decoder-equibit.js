@@ -1,4 +1,5 @@
 // const varuint = require('varuint-bitcoin')
+const bs58 = require('bs58')
 const bitcoin = require('bitcoinjs-lib')
 const { compose, addProp } = require('tx-builder/src/compose-read')
 const { readInputs, readInput } = require('tx-builder/src/tx-decoder')
@@ -24,15 +25,15 @@ const decodeTx = buffer =>
 )
 
 // readOutput :: Buffer -> [Res, Buffer]
-const readOutput = buffer =>
-(
-  compose([
+const readOutput = buffer => {
+  console.log(buffer.toString('hex'))
+  return compose([
     addProp('value', readUInt64),             // 8 bytes, Amount in satoshis
     addProp('scriptPubKey', readScript)
     // addProp('script', readVarSlice)          // 1-9 bytes (VarInt), Locking-Script Size; Variable, Locking-Script
     // addProp('equibit', readEquibitData)       //
   ])({}, buffer)
-)
+}
 
 const readScript = buffer => {
   const codeops = Object.assign({}, ...Object.entries(bitcoin.opcodes).map(([ k, v ]) => ({ [v]: k })))
@@ -51,14 +52,15 @@ const readScript = buffer => {
     } else if (hex >= 0x52 && hex <= 0x60) {
       asm.push(codeops[parseInt(hex - 0x50, 10)])
     } else if (hex >= 0x02 && hex <= 0x4b) {
-      asm.push(scriptBuffer.slice(p + 1, p + part).toString('hex'))
+      asm.push(scriptBuffer.slice(p + 1, p + part + 1).toString('hex'))
       p += part
     } else if (codeops[part]) {
       asm.push(codeops[part])
     } else throw('unknown opcode ' + byte)
   }
   decoded.asm = asm.join(' ')
-  decoded.addresses = []
+  // decoded.asm = bitcoin.script.toASM(scriptBuffer)
+  decoded.addresses = [ bitcoin.address.fromOutputScript(scriptBuffer, bitcoin.networks.testnet) ]
 
   return [ decoded, bufferLeft ]
 }
