@@ -1,5 +1,4 @@
 // const varuint = require('varuint-bitcoin')
-const bs58 = require('bs58')
 const bitcoin = require('bitcoinjs-lib')
 const { compose, addProp } = require('tx-builder/src/compose-read')
 const { readInputs, readInput } = require('tx-builder/src/tx-decoder')
