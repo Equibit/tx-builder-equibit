@@ -53,12 +53,12 @@ module.exports = [{
           addresses: [
             'mkRBGiKuV6bPywuoC24cbAq1imh5t5Ah1f'
           ]
-        // },
-        // equibit: {
-        //   payment_currency: 0,
-        //   payment_tx_id: '',
-        //   issuance_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
-        //   issuance_json: ''
+          // },
+          // equibit: {
+          //   payment_currency: 0,
+          //   payment_tx_id: '',
+          //   issuance_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
+          //   issuance_json: ''
         }
       },
       {
@@ -72,12 +72,12 @@ module.exports = [{
           addresses: [
             'mx8nS2VU1wWsYZhkZKQZDqZUc7k4AYBWBU'
           ]
-        // },
-        // equibit: {
-        //   payment_currency: 0,
-        //   payment_tx_id: '',
-        //   issuance_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
-        //   issuance_json: ''
+          // },
+          // equibit: {
+          //   payment_currency: 0,
+          //   payment_tx_id: '',
+          //   issuance_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
+          //   issuance_json: ''
         }
       }
     ]
@@ -128,6 +128,30 @@ module.exports = [{
       }
     ]
   },
+  txEqb: {
+    version: 2,
+    locktime: 103,
+    vin: [
+      {
+        txid: '',
+        vout: 0,
+        script: '',
+        sequence: 4294967294
+      }
+    ],
+    vout: [
+      {
+        value: 8 * 10000,
+        address: 'TQaVGcL5YPxSUuktppq4w73PJpBGdffJaaCj'
+        // equibit: {
+        //   payment_currency: 0,
+        //   payment_tx_id: '',
+        //   issuance_tx_id: '0000000000000000000000000000000000000000000000000000000000000000',
+        //   issuance_json: ''
+        // }
+      }
+    ]
+  },
   hexItems: {
     vin: [{
       hex: '1f703534fdbc79f4afe57a45b7d581a0414c5b688f00c317e1cd0e17c15190f5000000006a47304402207df13b31d1d34105eefd9a15f311d951d5113da2de470a7d7880ecf05fcc68a202201daec46dfa7eb516cd3372e96be8738aaa6569290d640d867b419182fb49c686012103a6afa2211fc96a4130e767da4a9e802f5e922a151c5cd6d4bffa80358dd1f9a3feffffff'
@@ -152,6 +176,15 @@ module.exports = [{
       // equibit: {
       //   hex: '0000000000000000000000000000000000000000000000000000000000000000000000000000'
       // }
+    }]
+  },
+  hexItemsEqb: {
+    vin: [{
+      hex: ''
+    }],
+    voutOffset: 447,
+    vout: [{
+      hex: '80380100000000001976a914ad662e1220c2c9b432187024b212c299387e9f9288ac'
     }]
   }
 }]

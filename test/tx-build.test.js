@@ -16,6 +16,8 @@ const fixturesIssuance = require('./fixtures/tx-hex-issuance')
 const fixtureNode = require('./fixtures/hdnode')
 const scriptBuilder = require('../src/script-builder')
 const fixtureHtlc = require('./fixtures/tx-htlc')
+const bitcoin = require('bitcoinjs-lib')
+const eqbNetworks = require('../src/networks-equibit')
 
 const { hashTimelockContract } = scriptBuilder
 
@@ -40,10 +42,25 @@ describe('tx-build-equibit', function () {
       assert.equal(buildEquibitData(obj).toString('hex'), equibitData)
     })
 
-    it('should build vout buffers', function () {
+    it('should build vout buffers given a bitcoin testnet network', function () {
       fixture.tx.vout.forEach((vout, v) => {
-        const buffer = bufferOutputEqb({})(vout)
+        const buffer = bufferOutputEqb({network: bitcoin.networks.testnet})(vout)
         assert.equal(buffer.toString('hex'), fixture.hexItems.vout[v].hex, `can build vout #${v} buffer`)
+      })
+    })
+
+    it('should build vout buffers given equitbit testnet network', function () {
+      fixture.txEqb.vout.forEach((vout, v) => {
+        const buffer = bufferOutputEqb({network: eqbNetworks.testnet})(vout)
+        assert.equal(buffer.toString('hex'), fixture.hexItemsEqb.vout[v].hex, `can build vout #${v} buffer`)
+      })
+    })
+
+    // todo negative test when passing wrong network
+    xit('should fail to build vout if vout contains Bitcoin address while equitbit testnet network is used', function () {
+      fixture.tx.vout.forEach((vout, v) => {
+        const buffer = bufferOutputEqb({network: eqbNetworks.testnet})(vout)
+        //assert.equal(buffer.toString('hex'), fixture.hexItems.vout[v].hex, `can build vout #${v} buffer`)
       })
     })
   })
@@ -52,7 +69,7 @@ describe('tx-build-equibit', function () {
     const keyPair = fixtureNode.keyPair
 
     it('should create vin script', function () {
-      const script = vinScript(buildTxCopyEqb({}), { hashTimelockContract })(fixture.tx, 0)(keyPair)
+      const script = vinScript(buildTxCopyEqb({network: bitcoin.networks.testnet}), { hashTimelockContract })(fixture.tx, 0)(keyPair)
       assert.equal(script.toString('hex'), fixture.decoded.vin[0].scriptSig.hex)
     })
 
@@ -72,7 +89,7 @@ describe('tx-build-equibit', function () {
 
   describe('build tx', function () {
     it('should build an empty eqb transaction', function () {
-      const buffer = buildTx(fixture.tx, {})
+      const buffer = buildTx(fixture.tx, {network: bitcoin.networks.testnet})
       assert.equal(buffer.toString('hex'), fixture.hex)
     })
 
@@ -80,7 +97,7 @@ describe('tx-build-equibit', function () {
       const fixture = fixturesIssuance[0]
       const tx = fixture.tx
       tx.vin.forEach(vin => { vin.keyPair = fixtureNode.keyPair })
-      const buffer = buildTx(tx, {})
+      const buffer = buildTx(tx, {network: bitcoin.networks.testnet})
       assert.equal(buffer.toString('hex'), fixture.hex)
     })
 
@@ -97,7 +114,7 @@ describe('tx-build-equibit', function () {
   })
 
   describe('SHA3', function () {
-    const options = { sha: 'SHA3_256' }
+    const options = { sha: 'SHA3_256', network: bitcoin.networks.testnet }
 
     it('should build HTLC locking transaction with SHA3', function () {
       const fixture = fixturesSha3[1]
