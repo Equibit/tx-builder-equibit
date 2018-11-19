@@ -24,11 +24,14 @@ const decodeTx = buffer =>
 )
 
 // readOutput :: Buffer -> [Res, Buffer]
-const readOutput = buffer => compose([
-  addProp('value', readUInt64),            // 8 bytes, Amount in satoshis
-  addProp('scriptPubKey', readScript)      // 1-9 bytes (VarInt), Locking-Script Size; Variable, Locking-Script
-  // addProp('equibit', readEquibitData)
-])({}, buffer)
+const readOutput = buffer =>
+(
+  compose([
+    addProp('value', readUInt64),            // 8 bytes, Amount in satoshis
+    addProp('scriptPubKey', readScript)      // 1-9 bytes (VarInt), Locking-Script Size; Variable, Locking-Script
+    // addProp('equibit', readEquibitData)
+  ])({}, buffer)
+)
 
 const readScript = buffer => {
   const [ scriptBuffer, bufferLeft ] = readVarSlice(buffer)
