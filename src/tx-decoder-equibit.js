@@ -24,24 +24,25 @@ const decodeTx = buffer =>
 )
 
 // readOutput :: Buffer -> [Res, Buffer]
-const readOutput = buffer => {
-  console.log(buffer.toString('hex'))
-  return compose([
-    addProp('value', readUInt64),             // 8 bytes, Amount in satoshis
-    addProp('scriptPubKey', readScript)
-    // addProp('script', readVarSlice)          // 1-9 bytes (VarInt), Locking-Script Size; Variable, Locking-Script
-    // addProp('equibit', readEquibitData)       //
-  ])({}, buffer)
-}
+const readOutput = buffer => compose([
+  addProp('value', readUInt64),            // 8 bytes, Amount in satoshis
+  addProp('scriptPubKey', readScript)      // 1-9 bytes (VarInt), Locking-Script Size; Variable, Locking-Script
+  // addProp('equibit', readEquibitData)
+])({}, buffer)
 
 const readScript = buffer => {
-  const codeops = Object.assign({}, ...Object.entries(bitcoin.opcodes).map(([ k, v ]) => ({ [v]: k })))
   const [ scriptBuffer, bufferLeft ] = readVarSlice(buffer)
   const decoded = {
     hex: scriptBuffer.toString('hex'),
     type: scriptBuffer[0] === bitcoin.opcodes.OP_DUP && scriptBuffer[1] === bitcoin.opcodes.OP_HASH160 ? 'pubkeyhash' : 'nonstandard'
   }
 
+  // take bitcoin opcodes and reverse the keys and values to lookup ASM strings from int opcodes
+  const codeops = Object.assign({}, ...Object.entries(bitcoin.opcodes).map(([ k, v ]) => ({ [v]: k })))
+
+  // Currently this is identical to the implementation of bitcoinjs-lib's `bitcoin.script.toASM(buffer).
+  // A separate implementation is desired so that if/when EQB implements new operations we can decode them ourselves.
+  // Candidate for being added to a separate "override" repo if we need custom implementations of current bitcoin libraries.
   const asm = []
   for (let p = 0; p < scriptBuffer.length; p++) {
     const part = scriptBuffer[p]
@@ -55,11 +56,11 @@ const readScript = buffer => {
       p += part
     } else if (codeops[part]) {
       asm.push(codeops[part])
-    } else throw('unknown opcode ' + byte)
+    } else throw new Error('unknown opcode ' + part)
   }
   decoded.asm = asm.join(' ')
-  // decoded.asm = bitcoin.script.toASM(scriptBuffer)
-  decoded.addresses = [ bitcoin.address.fromOutputScript(scriptBuffer, bitcoin.networks.testnet) ]
+  // Only P2PKH and P2PWPKH address decoding is supported
+  decoded.addresses = [ bitcoin.address.fromOutputScript(scriptBuffer) ]
 
   return [ decoded, bufferLeft ]
 }
