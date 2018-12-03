@@ -13,7 +13,7 @@ module.exports = {
   },
   testnet: {
     messagePrefix: '\x18Equibit Signed Message:\n',
-    bech32: 'tb',
+    bech32: 'tq',
     bip32: {
       public: 0x043587cf,
       private: 0x04358394
