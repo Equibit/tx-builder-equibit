@@ -1,0 +1,88 @@
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"getblockchaininfo"}' --verbose 169.53.165.114:18331
+
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"generate", "params":[1]}' --verbose 169.53.165.114:18331
+// GetNewAddress
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"getnewaddress"}' --verbose 169.53.165.114:18331
+// TQsWSj9GDJTRgvHDeSCEpvRSjiZCCuDJmEXp
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"dumpprivkey", "params":["TQsWSj9GDJTRgvHDeSCEpvRSjiZCCuDJmEXp"]}' --verbose 169.53.165.114:18331
+// Priv key:
+// AiNMsfdLL64ExgDZ5BFQqd5y6Zid1nWr59W1qpnjknJtRQ2hijNjW5
+
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"listunspent", "params":[0, 9999, ["TQaJyoNCGvMrZNWiyipKaVgLrPr3PESSf9cZ"]]}' --verbose 169.53.165.114:18331
+
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"importaddress", "params":["TQaJyoNCGvMrZNWiyipKaVgLrPr3PESSf9cZ"]}' --verbose 169.53.165.114:18331
+
+// From: TQaM24Yjz2SUBUFuEuP67AWjcwBKNdEWhdLH
+// EQB txid: e664495dd8d1873ecd73b1318ccec6ff75ebf611499f1f1309e48d18332fabdc
+// 3.05768859
+// 3.05767859
+// bcrt1qhn6l3jl02la469u5ad3x5a6juvw3k24tr0et80
+// tb1qhn6l3jl02la469u5ad3x5a6juvw3k24tpxqxsx
+// tq1qhn6l3jl02la469u5ad3x5a6juvw3k24t99e86f
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"createrawtransaction", "params":[[{"txid":"e664495dd8d1873ecd73b1318ccec6ff75ebf611499f1f1309e48d18332fabdc","vout":0}],{"tb1qhn6l3jl02la469u5ad3x5a6juvw3k24tpxqxsx":3.05767859}]}' --verbose 169.53.165.114:18331
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"createrawtransaction", "params":[[{"txid":"e664495dd8d1873ecd73b1318ccec6ff75ebf611499f1f1309e48d18332fabdc","vout":0}],{"tq1qhn6l3jl02la469u5ad3x5a6juvw3k24t99e86f":3.05767859}]}' --verbose 169.53.165.114:18331
+//{"tb1qhn6l3jl02la469u5ad3x5a6juvw3k24tpxqxsx":3.05767859}
+// createrawtransaction: 020000000001dcab2f33188de409131f9f4911f6eb75ffc6ce8c31b173cd3e87d1d85d4964e60000000000ffffffff01b3a5391200000000160014bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab0000000000
+
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"signrawtransaction", "params":["020000000001dcab2f33188de409131f9f4911f6eb75ffc6ce8c31b173cd3e87d1d85d4964e60000000000ffffffff01b3a5391200000000160014bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab0000000000"]}' --verbose 169.53.165.114:18331
+
+// TQaY1uwh69Tmc9u3uThCFxfhvfxJJXPdh5Sb
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"dumpprivkey", "params":["TQaM24Yjz2SUBUFuEuP67AWjcwBKNdEWhdLH"]}' --verbose 169.53.165.114:18331
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"dumpprivkey", "params":["TQaY1uwh69Tmc9u3uThCFxfhvfxJJXPdh5Sb"]}' --verbose 169.53.165.114:18331
+
+
+// UTXO:
+// TQaEa8T4RKJPNX7VDrjVhpthvQoHeDFMZNcv
+// 1cc8646264a17b0088dc2ff72a2bf963931eb5f0e130cd8ba8bbe9bb3b1ddca2 0
+// 3.05774794
+// 3.05773794
+// scriptPubKey: 2102106cf36e9dea0d84c23f5ef3b41690f849ac1e9ecb8daddbb81841ee55c39917ac
+// privKey: cP6gzgQj4F15FPRSNMs7sVdb4XFRYc5RndqeGsbVFNRUCJ9RWZsy
+// prigKey eqb: cP6gzgQj4F15FPRSNMs7sVdb4XFRYc5RndqeGsbVFNRUCJBg6z3d
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"createrawtransaction", "params":[[{"txid":"1cc8646264a17b0088dc2ff72a2bf963931eb5f0e130cd8ba8bbe9bb3b1ddca2","vout":0}],{"tq1qhn6l3jl02la469u5ad3x5a6juvw3k24t99e86f":3.05773794}]}' --verbose 169.53.165.114:18331
+// Result: 020000000001a2dc1d3bbbe9bba88bcd30e1f0b51e9363f92b2af72fdc88007ba1646264c81c0000000000ffffffff01e2bc391200000000160014bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab0000000000
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"signrawtransaction", "params":["020000000001a2dc1d3bbbe9bba88bcd30e1f0b51e9363f92b2af72fdc88007ba1646264c81c0000000000ffffffff01e2bc391200000000160014bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab0000000000",[{"txid":"1cc8646264a17b0088dc2ff72a2bf963931eb5f0e130cd8ba8bbe9bb3b1ddca2","vout":0,"scriptPubKey":"2102106cf36e9dea0d84c23f5ef3b41690f849ac1e9ecb8daddbb81841ee55c39917ac"}],["cP6gzgQj4F15FPRSNMs7sVdb4XFRYc5RndqeGsbVFNRUCJBg6z3d"]]}' --verbose 169.53.165.114:18331
+
+
+// Send to newly generated key:
+// TQsWSj9GDJTRgvHDeSCEpvRSjiZCCuDJmEXp
+// Priv key:
+// AiNMsfdLL64ExgDZ5BFQqd5y6Zid1nWr59W1qpnjknJtRQ2hijNjW5
+// GenerateToAddress:
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"generatetoaddress", "params":[1, "TQsWSj9GDJTRgvHDeSCEpvRSjiZCCuDJmEXp"]}' --verbose 169.53.165.114:18331
+// result:
+// UTXO: 69e0347f1597d4659f97ee2e2856f6da6a4f7e8f7b75cca3c76cbf9ec77141f1 0
+// amount: 3.05789631
+// scriptPubKey: a914f9f42d01c063d14b034bdf8bb06c81811ce31ad787
+// CreateRawTransaction:
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"createrawtransaction", "params":[[{"txid":"69e0347f1597d4659f97ee2e2856f6da6a4f7e8f7b75cca3c76cbf9ec77141f1","vout":0}],{"tq1qhn6l3jl02la469u5ad3x5a6juvw3k24t99e86f":3.05788631}]}' --verbose 169.53.165.114:18331
+// Sign:
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"signrawtransaction",
+"params":["020000000001f14171c79ebf6cc7a3cc757b8f7e4f6adaf656282eee979f65d497157f34e0690000000000ffffffff01d7f6391200000000160014bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab0000000000",
+[{"txid":"69e0347f1597d4659f97ee2e2856f6da6a4f7e8f7b75cca3c76cbf9ec77141f1","vout":0,"scriptPubKey":"a914f9f42d01c063d14b034bdf8bb06c81811ce31ad787"}],["AiNMsfdLL64ExgDZ5BFQqd5y6Zid1nWr59W1qpnjknJtRQ2hijNjW5"]]}' --verbose 169.53.165.114:18331
+
+
+
+// Decode unsigned tx:
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"decoderawtransaction", "params":["020000000001f14171c79ebf6cc7a3cc757b8f7e4f6adaf656282eee979f65d497157f34e0690000000000ffffffff01d7f6391200000000160014bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab0000000000"]}' --verbose 169.53.165.114:18331
+
+
+// Spend sripthash UTXO:
+// 020000000001f14171c79ebf6cc7a3cc757b8f7e4f6adaf656282eee979f65d497157f34e069000000002103a6afa2211fc96a4130e767da4a9e802f5e922a151c5cd6d4bffa80358dd1f9a3ffffffff01d7f6391200000000160014bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab0000000000
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"sendrawtransaction", "params":["020000000001f14171c79ebf6cc7a3cc757b8f7e4f6adaf656282eee979f65d497157f34e069000000002103a6afa2211fc96a4130e767da4a9e802f5e922a151c5cd6d4bffa80358dd1f9a3ffffffff01d7f6391200000000160014bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab0000000000"]}' --verbose 169.53.165.114:18331
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"decoderawtransaction", "params":["020000000001f14171c79ebf6cc7a3cc757b8f7e4f6adaf656282eee979f65d497157f34e069000000002103a6afa2211fc96a4130e767da4a9e802f5e922a151c5cd6d4bffa80358dd1f9a3ffffffff01d7f6391200000000160014bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab0000000000"]}' --verbose 169.53.165.114:18331
+// try 2: with OP_0
+// 020000000001f14171c79ebf6cc7a3cc757b8f7e4f6adaf656282eee979f65d497157f34e06900000000002103a6afa2211fc96a4130e767da4a9e802f5e922a151c5cd6d4bffa80358dd1f9a3ffffffff01d7f6391200000000160014bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab0000000000
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"decoderawtransaction", "params":["020000000001f14171c79ebf6cc7a3cc757b8f7e4f6adaf656282eee979f65d497157f34e06900000000222103a6afa2211fc96a4130e767da4a9e802f5e922a151c5cd6d4bffa80358dd1f9a3ffffffff01d7f6391200000000160014bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab0000000000"]}' --verbose 169.53.165.114:18331
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"sendrawtransaction", "params":["020000000001f14171c79ebf6cc7a3cc757b8f7e4f6adaf656282eee979f65d497157f34e0690000000023512103a6afa2211fc96a4130e767da4a9e802f5e922a151c5cd6d4bffa80358dd1f9a3ffffffff01d7f6391200000000160014bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab0000000000"]}' --verbose 169.53.165.114:18331
+// Result txid: 55119e954641cb2fa3f350c32536e63068ffc96d74a572ee2ae53fa7fa98494b
+
+// Pub key: b507c1954e12523222c969de2feec01ab5c72370f254cbf909c414345e32e19f6710c0e5b3ed13b7c748642ff1a152f7c634ccb5adff0a44e76c47af2e50877c
+// 020000000001f14171c79ebf6cc7a3cc757b8f7e4f6adaf656282eee979f65d497157f34e06900000000002103a6afa2211fc96a4130e767da4a9e802f5e922a151c5cd6d4bffa80358dd1f9a3ffffffff01d7f6391200000000160014bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab0000000000
+
+// pub key:
+// 020000000001f14171c79ebf6cc7a3cc757b8f7e4f6adaf656282eee979f65d497157f34e069000000004140b507c1954e12523222c969de2feec01ab5c72370f254cbf909c414345e32e19f6710c0e5b3ed13b7c748642ff1a152f7c634ccb5adff0a44e76c47af2e50877cffffffff01d7f6391200000000160014bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab0000000000
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"sendrawtransaction", "params":["020000000001f14171c79ebf6cc7a3cc757b8f7e4f6adaf656282eee979f65d497157f34e069000000004140b507c1954e12523222c969de2feec01ab5c72370f254cbf909c414345e32e19f6710c0e5b3ed13b7c748642ff1a152f7c634ccb5adff0a44e76c47af2e50877cffffffff01d7f6391200000000160014bcf5f8cbef57fb5d1794eb626a7752e31d1b2aab0000000000"]}' --verbose 169.53.165.114:18331
+
+curl --user 'equibitdev:jmx4wvlR1GU0nMct06btvexrDQ9Pi0_TC8cJhNs3kVE=' -H "Content-Type: application/json" -d '{"jsonrpc:":"1.0", "method":"generate", "params":[100]}' --verbose 169.53.165.114:18331
+
